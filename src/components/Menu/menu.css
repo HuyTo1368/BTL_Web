@@ -1,3 +1,22 @@
-.TanLong {
-    height: 50px;
+/* .menu1 {
+    margin-top: 3px;
+    border-radius: 3px;
+    background-color: #4CAF50;
+    height: 10vh;
+    width: 15vw;
+} */
+.active {
+    margin-top: 3px;
+    background-color: #fff;
+    text-decoration: none;
+    line-height: 10vh;
+    margin-left: 2px;
+    height: 10vh;
+    width: 15vw;
+    font-size: 18px;
+    color: #083071;
+    border: #fff;
+    box-shadow: 0 2px 6px 0 rgb(32 103 221 / 20%), 0 4px 20px 0 rgb(32 103 221 / 19%);
 }
+
+
