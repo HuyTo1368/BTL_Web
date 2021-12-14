@@ -1,10 +1,7 @@
-/* .menu1 {
-    margin-top: 3px;
-    border-radius: 3px;
-    background-color: #4CAF50;
-    height: 10vh;
-    width: 15vw;
-} */
+.menu1 {
+    margin-top: 10px;
+    
+}
 .active {
     margin-top: 3px;
     background-color: #fff;

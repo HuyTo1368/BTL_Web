@@ -1,9 +1,10 @@
 import React from "react";
 import Menu from "../Menu/menu";
 import Navbar from "../Navbar/Navbar";
+import Footer from "../footer/footer";
 import './tranghai.css'
 
-const tabs = ['Tiến độ điều tra', 'Phân tích số liệu', 'Danh sách dân số', 'Tra cứu thông tin']
+
 
 export default function Tranghai(props) {
     return (
@@ -11,13 +12,19 @@ export default function Tranghai(props) {
             <div>
                 <Navbar />
             </div>
+
             <div className="display">
                 <Menu />
 
-                <div>
-                    
+                <div className="khunglamviec">
+
                 </div>
             </div>
+
+            <div className="fter">
+                <Footer  />
+            </div>
+
         </div>
     )
 }
