@@ -1,0 +1,22 @@
+.tieude {
+	display: flex;
+	flex-direction: row;
+	height: 8vh;
+	background-color: #2067dd;
+    width: 100vw;
+
+}
+
+.khungphai {
+	font-size: 18px;
+	display: flex;
+	flex-direction: row;
+	position: absolute;
+	right: 60px;
+	color: white;
+	line-height: 8vh;
+}
+
+.khungphai a{
+	color: white;
+}
