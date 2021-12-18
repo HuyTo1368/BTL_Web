@@ -9,6 +9,7 @@ function App() {
       {/* <Trangdau />
       <Tranghai /> */}
       {'tanlong'}
+      <div>hà Văn Huy</div>
     </div>
 
   );
