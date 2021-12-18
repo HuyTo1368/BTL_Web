@@ -3,7 +3,7 @@ import Menu from "../Menu/menu";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../footer/footer";
 import './tranghai.css'
-
+import { Tiendo } from "../tiendodieutra/tiendodieutra";
 
 
 export default function Tranghai(props) {
@@ -17,7 +17,7 @@ export default function Tranghai(props) {
                 <Menu />
 
                 <div className="khunglamviec">
-
+                    <Tiendo />
                 </div>
             </div>
 
