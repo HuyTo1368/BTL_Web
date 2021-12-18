@@ -15,12 +15,10 @@ export default function Tranghai(props) {
 
             <div className="display">
                 <Menu />
-
                 <div className="khunglamviec">
                     <Tiendo />
                 </div>
             </div>
-
             <div className="fter">
                 <Footer  />
             </div>

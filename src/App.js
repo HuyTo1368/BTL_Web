@@ -6,9 +6,8 @@ import Tranghai from './components/tranghai/Trangchinh.jsx'
 function App() {
   return (
     <div className="App">
-      {/* <Trangdau />
-      <Tranghai /> */}
-      {'tanlong'}
+      {/* <Trangdau /> */}
+      <Tranghai />
     </div>
 
   );

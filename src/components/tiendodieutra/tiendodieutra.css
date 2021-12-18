@@ -27,4 +27,14 @@
     width: 15%;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
+    
+}
+
+.select_cap:hover{
+    background-color: rgb(194, 201, 201);
+}
+
+.select_cap:focus{
+    background-color: aqua;
+    
 }
