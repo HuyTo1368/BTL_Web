@@ -7,6 +7,7 @@ const tabs = ['Tiến độ điều tra', 'Phân tích số liệu', 'Danh sách
 
 
 export default function Menu(props) {
+    
     return (
         <div>
             <div className="menu1">
