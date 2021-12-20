@@ -1,0 +1,49 @@
+.showPeople {
+
+}
+
+#list_people {
+    border: solid 1px #000000;
+    border-collapse: collapse;
+    margin: auto;
+    margin-top: 1vh;
+}
+
+#list_people thead {
+    background-color: #ff7474;
+}
+
+
+#list_people td {
+    border: dotted 1px #000000;
+    background-color: #f0f0f0;
+}
+
+#list_people th {
+    border: solid 1px #000000;
+}
+
+.ppname {
+    width: 13vw;
+}
+
+tbody .ppname {
+    text-align: left;
+    padding: 2px;
+}
+
+.ppcccd {
+    width: 8vw;
+}
+
+.ppgender {
+    width: 5vw;
+}
+
+.ppaddress {
+    width: 15vw;
+}
+
+.ppreligion {
+    width: 5vw;
+}
