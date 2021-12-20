@@ -1,11 +1,7 @@
-import { Axios } from "axios";
 import React, { useRef, useState } from "react"
 import './menu.css'
-import { Tiendo } from "../tiendodieutra/tiendodieutra";
 
 const tabs = ['Tiến độ điều tra', 'Phân tích số liệu', 'Danh sách dân số', 'Tra cứu thông tin', 'Cấp tài khoản', 'Nhập liệu'];
-
-
 
 export default function Menu(props) {
     

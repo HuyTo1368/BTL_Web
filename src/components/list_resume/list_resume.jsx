@@ -1,6 +1,5 @@
-import { Axios } from "axios";
 import React, { useState } from "react";
-import axios, * as others from 'axios';
+import axios from 'axios';
 import { Tiendo } from "../tiendodieutra/tiendodieutra";
 import './lisr_resume.css'
 
