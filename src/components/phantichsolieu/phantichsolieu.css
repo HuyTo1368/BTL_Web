@@ -43,11 +43,28 @@
 .chu_thich{
     width: 50%;
 }
-.legend { list-style: none; }
-.legend li { float: left; margin-right: 10px; }
-.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+
+.legend_phan_tich { 
+    list-style: none; 
+}
+.legend_phan_tich li { 
+    float: left; 
+    top: 200px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px; 
+}
+.legend_phan_tich span { 
+    border: 1px solid #ccc;
+    float: left;
+    bottom: 10px;
+    width: 12px; 
+    height: 12px; 
+    margin: 2px; 
+    font-weight: 700;
+}
 /* your colors */
-.legend .superawesome { background-color: #2372da; }
-.legend .awesome { background-color: rgb(4, 70, 131); }
-.legend .kindaawesome { background-color: #0000ff; }
-.legend .notawesome { background-color: #000000; }
+.legend_phan_tich .legend_1 { background-color: #76c747; }
+.legend_phan_tich .legend_2 { background-color: rgb(71, 128, 18); }
+.legend_phan_tich .legend_3 { background-color: #ce5d30; }
+.legend_phan_tich .legend_4 { background-color: #d48d7c; }

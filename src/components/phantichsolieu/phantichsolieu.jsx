@@ -1,41 +1,32 @@
 import React from "react";
-import axios from "axios";
-import './tiendodieutra.css';
+import './phantichsolieu.css';
 // import PieChart from "../ChartPie/ChartPie";
+import Chart from 'chart.js/auto';
 import { render } from "@testing-library/react";
 import { VictoryPie } from "victory-pie"
-import './ChartPie.css'
-import { useState } from "react/cjs/react.development";
+import './Chart_phan_tich.css';
 
-
-var getApi = 'http://localhost:5000/show'
-
-fetch(getApi)
-    .then(function(response){
-        return response.json();
-
-    })
-    .then(function (posts) {
-        var x = posts.map(function(post){
-            return post.numm;
-        })
-    })
-        
-var a = 250;
-var c = 300;
-
+import { VictoryChart } from "victory";
+var a = 100;
+var c = 200;
 var c_1 = Math.round((c*100)/(a+c))
 var a_1 = Math.round((a*100)/(a+c))
-  
-
 
 const myData = [
-    {x: "("+c_1+"%"+")" , y: c},
+    {x: "("+c_1+"%"+")", y: c},
     {x: "("+a_1+"%"+")", y: a},
 ];
 
 
-export function Tiendo(props) {
+const myData2 = [
+    {x: "("+c_1+"%"+")", y: c},
+    {x: "("+a_1+"%"+")", y: a},
+];
+
+
+
+
+export default function PhanTich(props) {
     const province = (e) => {
 
         e.preventDefault()
@@ -94,17 +85,31 @@ export function Tiendo(props) {
                     <option>Phường/ Xã</option>
                 </select>
             </div>
-            <div className="Chart_tien_do">
+            <div className="Chart_phan_tich" id="chu_thich1">
             <VictoryPie 
                 data = {myData}
-                colorScale = {"yellow","blue"}
-                radius = {200} 
+                colorScale = {"heatmap"}
+                radius = {170} 
             />
-            <ul class="legend">
-                <li><span className="superawesome"></span> Chưa khảo sát</li>
-                <li><span className="awesome"></span> Đã khảo sát</li>
-            </ul>
             </div>
+            <div className="Chart_phan_tich_2" id="chu_thich2">
+            <VictoryPie
+                 data = {myData2}
+                 colorScale = { "red"}
+                 radius = {170} 
+
+            />
+            </div>
+            <div>
+            </div>
+            <ul className="legend_phan_tich" >
+                <li><span className="legend_1"></span> Nam</li>
+                <li><span className="legend_2"></span> Nữ</li>
+                <li><span className="legend_3"></span> Trên 18 tuổi</li>
+                <li><span className="legend_4"></span> Dưới 18 tuổi</li>
+            </ul>
+            
+            
         </div>
 
 

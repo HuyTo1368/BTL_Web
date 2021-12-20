@@ -4,8 +4,8 @@ import Navbar from "../Navbar/Navbar";
 import Footer from "../footer/footer";
 import './tranghai.css'
 import { Tiendo } from "../tiendodieutra/tiendodieutra";
-
-
+import {useState} from "react";
+import  PhanTich  from "../phantichsolieu/phantichsolieu";
 export default function Tranghai(props) {
     return (
         <div>
@@ -16,7 +16,7 @@ export default function Tranghai(props) {
             <div className="display">
                 <Menu />
                 <div className="khunglamviec">
-                    <Tiendo />
+                    <div className="Long_1"><PhanTich/></div>
                 </div>
             </div>
             <div className="fter">
