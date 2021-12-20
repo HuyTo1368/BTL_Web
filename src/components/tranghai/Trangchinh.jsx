@@ -3,7 +3,7 @@ import Menu from "../Menu/menu";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../footer/footer";
 import './tranghai.css'
-import { Tiendo } from "../tiendodieutra/tiendodieutra";
+// import { Tiendo } from "../tiendodieutra/tiendodieutra";
 import { ListResume } from "../list_resume/list_resume";
 
 
