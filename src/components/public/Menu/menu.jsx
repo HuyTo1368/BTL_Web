@@ -16,7 +16,7 @@ export default function Menu(props) {
   return (
     <div>
       <div className="menu1">
-        <Link to="/Tiendo">
+        <Link to="./Tiendo">
           <button className="active">Tiến độ điều tra</button>
         </Link>
       </div>

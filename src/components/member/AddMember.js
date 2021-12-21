@@ -1,39 +1,41 @@
 import react from "react";
 import { Link } from "react-router-dom";
-import { Form, Button, Row, Col } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
+import styte from "./Member.css";
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 export default function AddMember() {
   return (
-    <>
-      <div>
-        <h1>Nhập số liệu</h1>
-        <Form>
-          <Form.Group as={Row} className="mb-3" controlId="formPlaintextEmail">
-            <Form.Label column sm="2">
-              Họ và tên
-            </Form.Label>
-            <Col sm="10">
-              <Form.Control
-                plaintext
-                readOnly
-                
-              />
-            </Col>
-          </Form.Group>
-
-          <Form.Group
-            as={Row}
-            className="mb-3"
-            controlId="formPlaintextPassword"
-          >
-            <Form.Label column sm="2">
-              
-            </Form.Label>
-            <Col sm="10">
-              <Form.Control type="password" placeholder="Password" />
-            </Col>
-          </Form.Group>
-        </Form>
-      </div>
-    </>
+    <div>
+      <form>
+        <div className="form-group row">
+          <label htmlFor="staticEmail" className="col-sm-2 col-form-label">
+            Email
+          </label>
+          <div className="col-sm-10">
+            <input
+              type="text"
+              readOnly
+              className="form-control-plaintext"
+              id="staticEmail"
+              defaultValue="email@example.com"
+            />
+          </div>
+        </div>
+        <div className="form-group row">
+          <label htmlFor="inputPassword" className="col-sm-2 col-form-label">
+            Password
+          </label>
+          <div className="col-sm-10">
+            <input
+              type="password"
+              className="form-control"
+              id="inputPassword"
+              placeholder="Password"
+            />
+          </div>
+        </div>
+      </form>
+    </div>
   );
 }

@@ -9,7 +9,7 @@ export default function Member() {
   return (
     <>
       <div>
-        <Link to="/member/addmember">
+        <Link to="./addmember">
           {/* <div className="addMember"> */}
             <Button variant="primary" style={styte.addMember} bsPrefix = "a">Thêm tài khoản</Button>
           {/* </div> */}
