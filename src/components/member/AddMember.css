@@ -1,0 +1,11 @@
+.containerr {
+  position: absolute;
+  background-color: black;
+  width: 50%;
+  left: 30%;
+}
+.part {
+  position: relative;
+  background-color: black;
+  width: 50%;
+}

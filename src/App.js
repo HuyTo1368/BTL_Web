@@ -1,13 +1,14 @@
-import "./App.css";
 import React from "react";
+import { Routes, Route } from "react-router";
+
 import Trangdau from "./components/trangdau/Trangdau.jsx";
 import Tranghai from "./components/tranghai/Trangchinh.jsx";
-import { Routes, Route } from "react-router";
 import { Tiendo } from "./components/tiendodieutra/tiendodieutra";
 import PhanTich from "./components/phantichsolieu/phantichsolieu";
 import Member from "./components/member/Member";
 import AddMember from "./components/member/AddMember";
-// import BarChart from './components/ChartPie/ChartPie';
+import EnterData from "./components/enter_data/EnterData";
+import "./App.css";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path="Member" element={<Member />} />
               <Route path="Phantich" element={<PhanTich />} />
               <Route path="Member/addMember" element={<AddMember />} />
+              <Route path="Nhaplieu" element={<EnterData/>} />
           </Route>
         </Routes>
       </>
