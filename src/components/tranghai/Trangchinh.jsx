@@ -16,7 +16,7 @@ export default function Tranghai(props) {
             <div className="display">
                 <Menu />
                 <div className="khunglamviec">
-                    <div className="Long_1"><PhanTich/></div>
+                    <div className="Long_1"><Tiendo/></div>
                 </div>
             </div>
             <div className="fter">

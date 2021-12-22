@@ -1,56 +1,33 @@
 import React from "react";
-import axios from "axios";
-import './tiendodieutra.css';
+import './phantichsolieu.css';
+// import PieChart from "../ChartPie/ChartPie";
+import Chart from 'chart.js/auto';
+import { render } from "@testing-library/react";
 import { VictoryPie } from "victory-pie"
-import './ChartPie.css'
-import "./tiendodieutra";
-import { VictoryBar } from "victory";
+import './Chart_phan_tich.css';
+import BarChart from "./BarChart";
+
+
 import { VictoryChart } from "victory";
-import { VictoryTheme } from "victory";
-import { useState } from "react";
-
-var dataChartPie
-
-
-
-
-
-const  sampleData=[
-    { x: 1, y: 2, y0: 1 },
-    { x: 2, y: 3, y0: 2 },
-    { x: 3, y: 5, y0: 2 },
-    { x: 4, y: 4, y0: 3 },
-    { x: 5, y: 6, y0: 3 }
-  ]
-
-
-var getApi = 'http://localhost:5000/show'
-// var a = 63
-fetch(getApi)
-  .then((response) => {
-    return response.json();
-  })
-  .then((data) => {
-    // const [a, seta] = useState(data[0].summ);
-    console.log(data)
-    return `<div>{data}</div>`
-
-    
-  });
-//   const [sliders] = useState(...data);
-  var a = 60
-  var c = 100;
-  var a_1 = Math.round((a * 100) / (a + c))
-  var c_1 = Math.round((c * 100) / (a + c))
-
-
+var a = 100;
+var c = 200;
+var c_1 = Math.round((c*100)/(a+c))
+var a_1 = Math.round((a*100)/(a+c))
 
 const myData = [
-    { x: "(" + c_1 + "%" + ")", y: c },
-    { x: "(" + a_1 + "%" + ")", y: a },
+    {x: "("+c_1+"%"+")", y: c},
+    {x: "("+a_1+"%"+")", y: a},
 ];
 
-export default function XuliTiendo() {
+
+const myData2 = [
+    {x: "("+c_1+"%"+")", y: c},
+    {x: "("+a_1+"%"+")", y: a},
+];
+
+
+
+export default function Xuliphantich(props) {
     const province = (e) => {
 
         e.preventDefault()
@@ -60,37 +37,37 @@ export default function XuliTiendo() {
         const huyen = document.querySelector('#huyen')
         const xa = document.querySelector('#xa')
         console.log(select_tinh)
-        select_tinh.addEventListener('click', function () {
+        select_tinh.addEventListener('click',function() {
             tinh.style.display = 'inline-block'
             huyen.style.display = 'none'
             xa.style.display = 'none'
-        })
-
+        })  
+        
     }
     const district = () => {
         const select_huyen = document.querySelector('#selected2')
         const tinh = document.querySelector('#tinh')
         const huyen = document.querySelector('#huyen')
         const xa = document.querySelector('#xa')
-        select_huyen.addEventListener('click', function () {
+        select_huyen.addEventListener('click',function() {
             tinh.style.display = 'inline-block'
             huyen.style.display = 'inline-block';
             xa.style.display = 'none';
 
-
-        })
+    
+    })
     }
     const town = () => {
         const select_xa = document.querySelector('#selected3')
         const tinh = document.querySelector('#tinh')
         const huyen = document.querySelector('#huyen')
         const xa = document.querySelector('#xa')
-        select_xa.addEventListener('click', function () {
+        select_xa.addEventListener('click',function() {
             tinh.style.display = 'inline-block'
             huyen.style.display = 'inline-block';
-            xa.style.display = 'inline-block';
-        })
-    }
+            xa.style.display = 'inline-block';  
+    })
+}
     return (
         <div>
             <button onClick={province} className="select_cap" id="selected1">Cấp tỉnh</button>
@@ -109,20 +86,38 @@ export default function XuliTiendo() {
                     <option>Phường/ Xã</option>
                 </select>
             </div>
-            <div className="Chart_tien_do">
-                <VictoryPie
-                    data={myData}
-                    colorScale={"yellow", "blue"}
-                    radius={200}
-                    animate={{
-                        duration: 2000
-                      }}
-                />
-                <ul class="legend">
-                    <li><span className="superawesome"></span> Chưa khảo sát</li>
-                    <li><span className="awesome"></span> Đã khảo sát</li>
-                </ul>
+            <div className="Chart_phan_tich" id="chu_thich1">
+            <VictoryPie 
+                data = {myData}
+                colorScale = {"heatmap"}
+                radius = {170} 
+            />
+            </div>
+            <div className="Chart_phan_tich_2" id="chu_thich2">
+            <VictoryPie
+                 data = {myData2}
+                 colorScale = { "red"}
+                 radius = {170} 
+                 animate={{
+                    duration: 2000
+                  }}
+
+            />
+            </div>
+            <div>
+            </div>
+            <ul className="legend_phan_tich" >
+                <li><span className="legend_1"></span> Nam</li>
+                <li><span className="legend_2"></span> Nữ</li>
+                <li><span className="legend_3"></span> Trên 18 tuổi</li>
+                <li><span className="legend_4"></span> Dưới 18 tuổi</li>
+            </ul>
+            
+            <div className="chart_dan_toc">
+                <BarChart style = {'height: 300'}/>
             </div>
         </div>
+
+
     )
 }

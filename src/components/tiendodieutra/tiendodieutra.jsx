@@ -11,13 +11,9 @@ import XuliTiendo from "./xulitiendo";
 
 
 export function Tiendo(props) {
-    
     return (
         <div>
             <XuliTiendo />
         </div>
-
-
     )
-
 }
