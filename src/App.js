@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router";
 
-import Trangdau from "./components/trangdau/Trangdau.jsx";
+import Login from "./components/trangdau/Trangdau.jsx";
 import Tranghai from "./components/tranghai/Trangchinh.jsx";
 import { Tiendo } from "./components/tiendodieutra/tiendodieutra";
 import PhanTich from "./components/phantichsolieu/phantichsolieu";
@@ -18,7 +18,7 @@ function App() {
     <div className="App">
       <>
         <Routes>
-          <Route path="/" element={<Trangdau />} />
+          <Route path="/" element={<Login />} />
           <Route path="/Trangchu" element={<Tranghai />}>
               <Route path="Tiendo" element={<Tiendo />} />
               <Route path="Member" element={<Member />} />
