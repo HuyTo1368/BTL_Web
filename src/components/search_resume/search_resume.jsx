@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import './search_resume.css'
+import axiosInstance from "../public/axios/axios";
 
 export default function Search(props) {
     const [listProvince, setlistProvince] = useState([]);
@@ -18,19 +18,19 @@ export default function Search(props) {
     const check = 0;
 
     useEffect(() => {
-        axios.get('http://localhost:3000/select').then((res) => {
+        axiosInstance.get('/select').then((res) => {
             setlistProvince(res.data);
         })
     }, []);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/select/town?province=${province}`).then((res) => {
+        axiosInstance.get(`/select/town?province=${province}`).then((res) => {
             setlistTown(res.data);
         })
     }, [province]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/select/village?province=${province}&town=${town}`).then((res) => {
+        axiosInstance.get(`/select/village?province=${province}&town=${town}`).then((res) => {
             setlistVillage(res.data);
         })
         if (province == "1") {
@@ -42,7 +42,7 @@ export default function Search(props) {
     }, [province, town]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/search?province=${province}&town=${town}&village=${village}&fullname=${fullname}&cccd=${cccd}&hometown=${hometown}&job=${job}&religion=${religion}`).then((res) => {
+        axiosInstance.get(`/search?province=${province}&town=${town}&village=${village}&fullname=${fullname}&cccd=${cccd}&hometown=${hometown}&job=${job}&religion=${religion}`).then((res) => {
                 setDanhsach(res.data);
         })
     }, [province, town, village, fullname, cccd, hometown, job, religion]);

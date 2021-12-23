@@ -4,6 +4,7 @@
 span{
     color: #bb1228;
 }
+
 .container-declaration {
     border: solid 1px black;
     max-width: 750px;
@@ -55,12 +56,12 @@ span{
     border-color: #9b59b6;
   }
   
-  form .gender-info .title {
+   .gender-info .title {
     font-size: 20px;
     font-weight: 500;
   }
   
-  form .gender-info .option {
+   .gender-info .option {
     display: flex;
     width: 80%;
     margin: 14px 0;
@@ -86,8 +87,7 @@ span{
     cursor: pointer;
   }
   
-  #dot1:checked ~ .option .one,
-  #dot2:checked ~ .option .two {
+  #dot1:checked ~ .option .one, #dot2:checked ~ .option .two {
     border-color: #d9d9d9;
     background: #2691d9;
   }

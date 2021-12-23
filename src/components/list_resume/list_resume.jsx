@@ -1,7 +1,7 @@
 import React, { useState , useContext, createContext} from "react";
-import axios from 'axios';
 import './lisr_resume.css'
 import Select from "../public/select_address/select";
+import axiosInstance from "../public/axios/axios";
 
 export default function ListResume(props) {
     const [peopleList, setpeopleList] = useState([]);
@@ -17,7 +17,7 @@ export default function ListResume(props) {
     };
 
     const showResume = () => {
-        axios.get(`http://localhost:3000/show?tinh=${tinh}&huyen=${huyen}&xa=${xa}`).then((response) => {
+        axiosInstance.get(`/show?tinh=${tinh}&huyen=${huyen}&xa=${xa}`).then((response) => {
             setpeopleList(response.data)
             console.log(response.data);
         })
