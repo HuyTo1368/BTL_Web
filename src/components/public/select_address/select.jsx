@@ -1,7 +1,7 @@
-import axios from "axios";
+
 import React, { useEffect, useState } from "react";
 import './select.css'
-
+import axiosInstance from "../axios/axios";
 
 
 export default function Select(props) {
@@ -18,19 +18,19 @@ export default function Select(props) {
     }
 
     useEffect(() => {
-        axios.get('http://localhost:3000/select').then((res) => {
+        axiosInstance.get('/select').then((res) => {
             setlistProvince(res.data);
         })
     }, []);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/select/town?province=${province}`).then((res) => {
+        axiosInstance.get(`/select/town?province=${province}`).then((res) => {
             setlistTown(res.data);
         })
     }, [province]);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/select/village?province=${province}&town=${town}`).then((res) => {
+        axiosInstance.get(`/select/village?province=${province}&town=${town}`).then((res) => {
             setlistVillage(res.data);
         })
         
