@@ -1,9 +1,9 @@
 import React, { useState , useContext, createContext} from "react";
 import axios from 'axios';
 import './lisr_resume.css'
-import Select from "../PUBLIC/select_address/select";
+import Select from "../public/select_address/select";
 
-export function ListResume(props) {
+export default function ListResume(props) {
     const [peopleList, setpeopleList] = useState([]);
     const [tinh, setTinh] = useState();
     const [huyen, setHuyen] = useState();

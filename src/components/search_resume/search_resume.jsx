@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import './search_resume.css'
 
-export function Search(props) {
+export default function Search(props) {
     const [listProvince, setlistProvince] = useState([]);
     const [listTown, setlistTown] = useState([]);
     const [listVillage, setlistVillage] = useState([]);
@@ -15,6 +15,7 @@ export function Search(props) {
     const [job, setJob] = useState('');
     const [religion, setReligion] = useState('');
     const [danhsach, setDanhsach] = useState([]);
+    const check = 0;
 
     useEffect(() => {
         axios.get('http://localhost:3000/select').then((res) => {
@@ -32,6 +33,12 @@ export function Search(props) {
         axios.get(`http://localhost:3000/select/village?province=${province}&town=${town}`).then((res) => {
             setlistVillage(res.data);
         })
+        if (province == "1") {
+            setTown('all_province')
+        }
+        if (town == 'all_province') {
+            setVillage('all_town')
+        }
     }, [province, town]);
 
     useEffect(() => {
@@ -48,8 +55,8 @@ export function Search(props) {
                     <tr>
                         <th style={{ width: '8vw' }}>Họ và tên</th>
                         <th style={{ width: '6vw' }}>CMND</th>
-                        <th>Giới tính</th>
-                        <th>Ngày sinh</th>
+                        <th style={{ width: '5vw' }}>Giới tính</th>
+                        <th style={{ width: '5vw' }}>Ngày sinh</th>
                         <th style={{ width: '8vw' }}>Quê quán</th>
                         <th style={{ width: '6vw' }}>Nghề nghiệp</th>
                         <th style={{ width: '4vw' }}>Dân tộc</th>
