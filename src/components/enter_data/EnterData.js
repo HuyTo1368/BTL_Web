@@ -2,24 +2,40 @@ import { useContext, useState, useRef } from "react";
 import "./EnterData.css";
 import axiosInstance from "../public/axios/axios";
 import Select from "../public/select_address/select";
-const EnterData = () => {
+
+export default function EnterData() {
   const [state, setState] = useState({
     CCCD: "",
     fullName: "",
     datebirth: "",
     gender: "",
     hometown: {
-        province: "",
-        town: "",
-        village: ""
+      province: "",
+      town: "",
+      village: "",
     },
-    address: "",
+    address: {
+      province: "",
+      town: "",
+      village: "",
+    },
     region: "",
     job: "",
     study: "",
   });
+  const callBackHomeTown = (...rest) => {
+    setState({
+      ...state,
+      hometown: { province: rest[0], town: rest[1], village: rest[2] },
+    });
+  };
+  const callBackAdress = (...rest) => {
+    setState({
+      ...state,
+      address: { province: rest[0], town: rest[1], village: rest[2] },
+    });
+  };
   console.log(state);
-
   const checkEmpty = () => {
     if (
       state.CCCD &&
@@ -37,24 +53,15 @@ const EnterData = () => {
     return false;
   };
   const sendAPI = () => {
-    if (checkEmpty()) {
-      axiosInstance.post("/Nhaplieu", state).then(() => {
-        console.log("hh");
+    // if (checkEmpty()) {
+      axiosInstance.post("/Nhaplieu", state).then((res) => {
+        console.log(res.data);
       });
-    }
+    // }
   };
-  //   var checkEmply =()=>{
-  //     let arrayTemp = Object.values(state);
-  //     let result = 1;
-  //     arrayTemp.map((e)=>{
-  //           result = (e === '') ? 0:result
-  //     })
-  //     return result;
-  // }
-  // console.log(checkEmply());
+
   return (
     <div>
-      <Select></Select>
       <div className="container-declaration">
         <div className="title"> Nhập liệu về dân số</div>
         <div className="form-declaration">
@@ -80,7 +87,6 @@ const EnterData = () => {
                 className="center"
                 type="date"
                 required
-                value={null}
                 onChange={(e) =>
                   setState({ ...state, datebirth: e.target.value })
                 }
@@ -100,50 +106,14 @@ const EnterData = () => {
             </div>
 
             <div className="inputBox center">
-              {/* <span className="details"> Quê quán</span>
-              <input
-                name="idAddress"
-                type="text"
-                required
-                className="center"
-                onChange={(e) =>
-                  setState({ ...state, hometown: e.target.value })
-                }
-                // value={data.idAddress}
-              /> */}
               <span className="details"> Quê quán</span>
-              <Select
-                onChange={(e) =>
-                  setState({ ...state, hometown: {province: e.target.value}})
-                }
-              ></Select>
+              <Select parentCallback={callBackHomeTown}></Select>
             </div>
 
             <div className="inputBox center">
               <span className="details"> Địa chỉ thường trú</span>
-              <input
-                name="idAddress"
-                type="text"
-                required
-                className="center"
-                onChange={(e) =>
-                  setState({ ...state, address: e.target.value })
-                }
-
-                // value={data.idAddress}
-              />
+              <Select parentCallback={callBackAdress}></Select>
             </div>
-
-            {/* <div className="inputBox center">
-              <span className="details"> Địa chỉ tạm trú</span>
-              <input
-                name="idAddress"
-                type="text"
-                required
-                className = "center"
-                // value={data.idAddress}
-              />
-            </div> */}
 
             <div className="inputBox center">
               <span className="details">Trình độ học vấn</span>
@@ -153,7 +123,6 @@ const EnterData = () => {
                 required
                 className="center"
                 onChange={(e) => setState({ ...state, study: e.target.value })}
-                // value={data.academicLevel}
               />
             </div>
 
@@ -216,6 +185,4 @@ const EnterData = () => {
       </div>
     </div>
   );
-};
-
-export default EnterData;
+}

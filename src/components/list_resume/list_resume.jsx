@@ -1,22 +1,35 @@
-import React, { useState } from "react";
-import axios from 'axios';
-import { Tiendo } from "../tiendodieutra/tiendodieutra";
+import React, { useState , useContext, createContext} from "react";
 import './lisr_resume.css'
-
+import Select from "../public/select_address/select";
+import axiosInstance from "../public/axios/axios";
 export function ListResume(props) {
     const [peopleList, setpeopleList] = useState([]);
+    const [tinh, setTinh] = useState();
+    const [huyen, setHuyen] = useState();
+    const [xa, setXa] = useState();
+
+
+    const callbackFunction = (Stinh, Shuyen, Sxa) => {
+        setTinh(Stinh);
+        setHuyen(Shuyen);
+        setXa(Sxa);
+    };
 
     const showResume = () => {
-        axios.get('http://localhost:3000/show').then((response) => {
+        axiosInstance.get(`/show?tinh=${tinh}&huyen=${huyen}&xa=${xa}`).then((response) => {
             setpeopleList(response.data)
+            console.log(response.data);
         })
             .catch(err => console.log(err))
+            
     }
-
+    
     return (
-        <div>
-            <Tiendo />
-            <button onClick={showResume}>Click</button>
+        <div className="listResume">
+            <div id="head_listResume">
+                <Select parentCallback={callbackFunction}/>
+                <button className="clickList" onClick={showResume}>Xem danh sách</button>
+            </div>
 
             <table id="list_people">
                 <thead>
