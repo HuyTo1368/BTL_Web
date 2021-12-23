@@ -2,18 +2,54 @@ import react from "react";
 import { Link } from "react-router-dom";
 import { Button, Alert } from "react-bootstrap";
 import styte from "./Member.css";
+import { useState } from "react";
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import './AddMember.css'
+import "./AddMember.css";
+import axiosInstance from "../public/axios/axios";
 
 export default function AddMember() {
+  const [state, setState] = useState({
+    user: "",
+    password: "",
+    passwordAgain: "",
+  });
+  console.log(state);
+  const [alertUp, setAlertUp] = useState(false)
+  const checkEmpty = () => {
+    if (state.user && state.password && state.passwordAgain) {
+      return true;
+    }
+    return false;
+  };
+  const checkPassWordAgain = () => {
+    if (state.password === state.passwordAgain) {
+      setAlertUp(false);
+      return true;
+    } else {
+      setAlertUp(true);
+      return false;
+    }
+  };
+  // const t = checkPassWordAgain()
+  const sendAPI = () => {
+    if (checkEmpty() && checkPassWordAgain()) {
+    //   axiosInstance.post("/member/add", state).then(() => {
+    //     console.log("hh");
+    //   });
+    // }
+      console.log("oke");
+    }
+  };
 
   return (
     <div>
-      <br/>
+      <br />
       <h1>Tạo tài khoản cho A1</h1>
-      <br/><br/><br/>
+      <br />
+      <br />
+      <br />
 
-      <form className="containerr">
+      <div className="containerr">
         <div className="form-group row">
           <label htmlFor="staticEmail" className="col-sm-2 col-form-label">
             Tài khoản
@@ -25,6 +61,7 @@ export default function AddMember() {
               id="staticEmail"
               required
               placeholder="id"
+              onChange={(e) => setState({ ...state, user: e.target.value })}
             />
           </div>
         </div>
@@ -40,12 +77,16 @@ export default function AddMember() {
               required
               id="inputPassword"
               placeholder="Password"
+              onChange={(e) => setState({ ...state, password: e.target.value })}
             />
           </div>
         </div>
-        <br/>
+        <br />
         <div className="form-group row">
-          <label htmlFor="inputPassword" className="col-sm-2 col-form-label">
+          <label
+            htmlFor="inputPasswordAgain"
+            className="col-sm-2 col-form-label"
+          >
             Nhập lại
           </label>
           <div className="col-sm-10">
@@ -53,14 +94,21 @@ export default function AddMember() {
               type="password"
               className="form-control"
               required
-              id="inputPassword"
+              id="inputPasswordAgain"
               placeholder="Enter Password again"
+              onChange={(e) =>
+                setState({ ...state, passwordAgain: e.target.value })
+              }
             />
+            {alertUp && <p className="alert">*Mật khẩu không khớp</p>}
           </div>
         </div>
-        <br/><br/>
-        <button type="submit" class="btn btn-primary">Xác nhận</button>
-      </form>
+        <br />
+        <br />
+        <button type="submit" class="btn btn-primary " onClick={sendAPI}>
+          Xác nhận
+        </button>
+      </div>
     </div>
   );
 }
