@@ -6,19 +6,6 @@ import { VictoryPie } from "victory-pie"
 import './ChartPie.css'
 import "./tiendodieutra";
 
-var getApi = 'http://localhost:5000/show'
-
-fetch(getApi)
-    .then(function (response) {
-        return response.json();
-
-    })
-    .then(function (posts) {
-        var x = posts.map(function (post) {
-            return post.numm;
-        })
-    })
-
 var a = 250;
 var c = 300;
 
