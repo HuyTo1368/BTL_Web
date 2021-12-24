@@ -43,10 +43,9 @@
 .chu_thich{
     width: 50%;
 }
-.legend { list-style: none; }
+.legend { list-style: none; left: 0;}
 .legend li { float: left; margin-right: 10px; }
 .legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
-/* your colors */
 .legend .superawesome { background-color: #2372da; }
 .legend .awesome { background-color: rgb(4, 70, 131); }
 .legend .kindaawesome { background-color: #0000ff; }

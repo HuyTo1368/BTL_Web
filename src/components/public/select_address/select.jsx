@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, {useEffect, useState}from "react";
+import React, { useEffect, useState } from "react";
 import './select.css'
 
 export default function Select() {
@@ -9,6 +9,7 @@ export default function Select() {
     const [province, setProvince] = useState('');
     const [town, setTown] = useState('');
     const [village, setVillage] = useState('');
+   
 
     useEffect(() => {
         axios.get('http://localhost:3000/select').then((res) => {
@@ -21,7 +22,7 @@ export default function Select() {
             setlistTown(res.data);
         })
     }, [province]);
-
+   
     useEffect(() => {
         axios.get(`http://localhost:3000/select/village?province=${province}&town=${town}`).then((res) => {
             setlistVillage(res.data);

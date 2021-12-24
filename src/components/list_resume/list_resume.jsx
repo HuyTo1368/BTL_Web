@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Tiendo } from "../tiendodieutra/tiendodieutra";
 import './lisr_resume.css'
 
+
 export function ListResume(props) {
     const [peopleList, setpeopleList] = useState([]);
 
@@ -15,7 +16,7 @@ export function ListResume(props) {
 
     return (
         <div>
-            <Tiendo />
+            <Tiendo/>
             <button onClick={showResume}>Click</button>
 
             <table id="list_people">
