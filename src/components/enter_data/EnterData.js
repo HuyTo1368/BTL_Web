@@ -1,9 +1,12 @@
 import { useContext, useState, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
+
 import "./EnterData.css";
 import axiosInstance from "../public/axios/axios";
 import Select from "../public/select_address/select";
 
 export default function EnterData() {
+  const navigate = useNavigate()
   const [state, setState] = useState({
     CCCD: "",
     fullName: "",
@@ -52,11 +55,17 @@ export default function EnterData() {
     }
     return false;
   };
+  // const history = useHistory()
+  
+
   const sendAPI = () => {
     // if (checkEmpty()) {
+      
       axiosInstance.post("/Nhaplieu", state).then((res) => {
-        console.log(res.data);
-      });
+        if(res.data === "Ok"){
+          
+          navigate('/Trangchu/Success');
+      }});
     // }
   };
 

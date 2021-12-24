@@ -9,14 +9,16 @@ import axiosInstance from "../public/axios/axios";
 
 export default function AddMember() {
   const [state, setState] = useState({
+    name: '',
     user: "",
     password: "",
     passwordAgain: "",
+
   });
-  console.log(state);
+  // console.log(state);
   const [alertUp, setAlertUp] = useState(false)
   const checkEmpty = () => {
-    if (state.user && state.password && state.passwordAgain) {
+    if (state.user && state.password && state.passwordAgain && state.name) {
       return true;
     }
     return false;
@@ -33,11 +35,15 @@ export default function AddMember() {
   // const t = checkPassWordAgain()
   const sendAPI = () => {
     if (checkEmpty() && checkPassWordAgain()) {
-    //   axiosInstance.post("/member/add", state).then(() => {
-    //     console.log("hh");
-    //   });
-    // }
-      console.log("oke");
+      const temp = state
+      delete temp.passwordAgain
+      axiosInstance.post("/member/add", temp).then((res) => {
+        if(res.data === 'Ok'){
+          console.log("dc");
+        }
+      });
+    
+
     }
   };
 
@@ -50,6 +56,21 @@ export default function AddMember() {
       <br />
 
       <div className="containerr">
+      <div className="form-group row">
+          <label htmlFor="staticName" className="col-sm-2 col-form-label">
+            Tên Tỉnh
+          </label>
+          <div className="col-sm-10">
+            <input
+              type="text"
+              className="form-control"
+              id="staticName"
+              required
+              placeholder="name"
+              onChange={(e) => setState({ ...state, name: e.target.value })}
+            />
+          </div>
+        </div>
         <div className="form-group row">
           <label htmlFor="staticEmail" className="col-sm-2 col-form-label">
             Tài khoản

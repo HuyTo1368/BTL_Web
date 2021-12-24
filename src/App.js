@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router";
-
+import { useState } from "react";
 import Login from "./components/trangdau/Trangdau.jsx";
 import Tranghai from "./components/tranghai/Trangchinh.jsx";
 import { Tiendo } from "./components/tiendodieutra/tiendodieutra";
@@ -11,14 +11,17 @@ import EnterData from "./components/enter_data/EnterData";
 import "./App.css";
 import ListResume from "./components/list_resume/list_resume";
 import Search from "./components/search_resume/search_resume";
+import Success from "./components/enter_data/Success.js";
 
 
 function App() {
+  const [state, setState] = useState({})
+  
   return (
     <div className="App">
       <>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/" element={<Login getJWT = {setState}/>} />
           <Route path="/Trangchu" element={<Tranghai />}>
               <Route path="Tiendo" element={<Tiendo />} />
               <Route path="Member" element={<Member />} />
@@ -27,6 +30,7 @@ function App() {
               <Route path="Nhaplieu" element={<EnterData/>} />
               <Route path="Danhsach" element={<ListResume />} />
               <Route path="Tracuu" element={<Search/>} />
+              <Route path="Success" element={<Success/>} />
           </Route>
         </Routes>
       </>
