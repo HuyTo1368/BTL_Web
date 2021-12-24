@@ -29,7 +29,7 @@ export default function Select(props) {
             setlistTown(res.data);
         })
     }, [province]);
-
+   
     useEffect(() => {
         axiosInstance.get(`/select/village?province=${province}&town=${town}&role=${data.role}&user=${data.user}`).then((res) => {
             setlistVillage(res.data);

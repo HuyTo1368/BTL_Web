@@ -1,94 +1,154 @@
-import React from "react";
+import React, { Component } from "react";
 import axios from "axios";
 import './tiendodieutra.css';
-// import PieChart from "../ChartPie/ChartPie";
 import { VictoryPie } from "victory-pie"
 import './ChartPie.css'
 import "./tiendodieutra";
+import { VictoryBar } from "victory";
+import { VictoryChart } from "victory";
+import { VictoryTheme } from "victory";
+import { useEffect, useState } from "react";
+import Select from "../public/select_address/select";
 
+
+  export default function XuliTiendo(props) {
+  const [listProvince, setlistProvince] = useState([]);
+  const [listTown, setlistTown] = useState([]);
+  const [listVillage, setlistVillage] = useState([]);
+  const [province, setProvince] = useState('');
+  const [town, setTown] = useState("checktown");
+  const [village, setVillage] = useState("checkvillage");
+  const [popuPro, setPopuPro] = useState('')
+  const[popuReal, setPopuReal] = useState('')
+
+  // const [popuTown, setPopuTown] = useState('check_village')
+ 
+
+  var abc
 var a = 250;
 var c = 300;
 
-var c_1 = Math.round((c * 100) / (a + c))
-var a_1 = Math.round((a * 100) / (a + c))
+  
+
+  useEffect(() => {
+      axios.get('http://localhost:3000/select').then((res) => {
+          setlistProvince(res.data);
+      })
+  }, []);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/show1?dan1=${province}&dan11=${town}&dan111=${village}`).then((res) => {
+      console.log(res.data[0].tong);
+      setPopuPro(res.data[0].tong)
+      setPopuReal(res.data[0].total)
+  })
+  }, [province,town,village]);
+
+  useEffect(() => {
+    axios.get(`http://localhost:3000/show2?dan1=${province}&dan11=${town}&dan111=${village}`).then((res) => {
+      console.log(res.data);
+  })
+  }, [province,town,village]);
+
+
+  useEffect(() => {
+      axios.get(`http://localhost:3000/select/town?province=${province}`).then((res) => {
+          setlistTown(res.data);
+      })
+  }, [province]);
+ 
+  useEffect(() => {
+      axios.get(`http://localhost:3000/select/village?province=${province}&town=${town}`).then((res) => {
+          setlistVillage(res.data);
+      })
+  }, [province, town]);
 
 
 
-const myData = [
+  var a 
+  var c 
+  if(popuPro == 0){
+    a = 0;
+    c = 100;
+  }
+  else{
+    a = popuPro
+    c = popuReal
+  }
+ 
+  var a_1 = Math.round((a * 100) / (a + c))
+  var c_1 = Math.round((c * 100) / (a + c))
+
+  const myData = [
     { x: "(" + c_1 + "%" + ")", y: c },
     { x: "(" + a_1 + "%" + ")", y: a },
-];
+  ];
+  
+  return (
+  <div>
+    <div>
+            <select
+                name={1}
+                id="tinh"
+                className="luachon1"
+                onChange={e => setProvince(e.target.value)}
+            >
+                <option>Tỉnh/ Thành phố</option>
+                {listProvince.map((val, key) => {
+                    return (
+                        <option key={val.province} value={val.province}>
+                            {val.province}
+                        </option>
+                    )
+                })}
+            </select>
 
-export default function XuliTiendo() {
-    const province = (e) => {
-
-        e.preventDefault()
-
-        const select_tinh = document.querySelector('#selected1')
-        const tinh = document.querySelector('#tinh')
-        const huyen = document.querySelector('#huyen')
-        const xa = document.querySelector('#xa')
-        console.log(select_tinh)
-        select_tinh.addEventListener('click', function () {
-            tinh.style.display = 'inline-block'
-            huyen.style.display = 'none'
-            xa.style.display = 'none'
-        })
-
-    }
-    const district = () => {
-        const select_huyen = document.querySelector('#selected2')
-        const tinh = document.querySelector('#tinh')
-        const huyen = document.querySelector('#huyen')
-        const xa = document.querySelector('#xa')
-        select_huyen.addEventListener('click', function () {
-            tinh.style.display = 'inline-block'
-            huyen.style.display = 'inline-block';
-            xa.style.display = 'none';
-
-
-        })
-    }
-    const town = () => {
-        const select_xa = document.querySelector('#selected3')
-        const tinh = document.querySelector('#tinh')
-        const huyen = document.querySelector('#huyen')
-        const xa = document.querySelector('#xa')
-        select_xa.addEventListener('click', function () {
-            tinh.style.display = 'inline-block'
-            huyen.style.display = 'inline-block';
-            xa.style.display = 'inline-block';
-        })
-    }
-    return (
-        <div>
-            <button onClick={province} className="select_cap" id="selected1">Cấp tỉnh</button>
-            <button onClick={district} className="select_cap" id="selected2">Cấp huyện</button>
-            <button onClick={town} className="select_cap" id="selected3">Cấp xã</button>
-            <div>
-                <select name={1} id="tinh" className="luachon">
-                    <option>Tỉnh/ Thành phố</option>
-                    <option>Hà Nội</option>
-                    <option>Nghệ An</option>
-                </select>
-                <select name={1} id="huyen" className="luachon">
-                    <option>Quận/ Huyện</option>
-                </select>
-                <select name={1} id="xa" className="luachon">
-                    <option>Phường/ Xã</option>
-                </select>
-            </div>
-            <div className="Chart_tien_do">
-                <VictoryPie
-                    data={myData}
-                    colorScale={"yellow", "blue"}
-                    radius={200}
-                />
-                <ul class="legend">
-                    <li><span className="superawesome"></span> Chưa khảo sát</li>
-                    <li><span className="awesome"></span> Đã khảo sát</li>
-                </ul>
-            </div>
+            <select
+                name={2}
+                id="huyen"
+                className="luachon1"
+                onChange={e => setTown(e.target.value)}
+            >
+                <option value={'checktown'}>Quận/ Huyện</option>
+                {listTown.map((val, key) => {
+                    return (
+                        <option key={val.town_name} value={val.town_name}>
+                            {val.town_name}
+                        </option>
+                    )
+                })}
+            </select>
+            <select
+                name={3}
+                id="xa"
+                className="luachon1"
+                onChange={e => setVillage(e.target.value)}
+            >
+                <option value={"checkvillage"}>Xã/ Phường</option>
+                {listVillage.map((val, key) => {
+                    return (
+                        <option key={val.village_name} value={val.village_name}>
+                            {val.village_name}
+                        </option>
+                    )
+                })}
+            </select>
         </div>
-    )
+    <div className="Chart_tien_do">
+      <VictoryPie
+        data={myData}
+        colorScale={"yellow", "blue"}
+        radius={150}
+        animate={{
+          duration: 2000
+        }}
+      />
+    </div>
+    <ul class="legend">
+      <li><span className="superawesome"></span> Đã khảo sát</li>
+      <li><span className="awesome"></span> Chưa khảo sát</li>
+    </ul>
+  </div>
+  )
 }
+
