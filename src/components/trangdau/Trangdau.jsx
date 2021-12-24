@@ -3,10 +3,8 @@ import React, { useState } from 'react';
 import axiosInstance from "../public/axios/axios";
 import { useNavigate } from 'react-router-dom';
 import sha256 from 'crypto-js/sha256';
+
 export default function Login(prop) {
-    const [data, setData] = useState({});
-    prop.getJWT(data)
-    console.log(prop.getJWT);
     const [error, setError] = useState('')
     const navigate = useNavigate();
 
@@ -17,14 +15,13 @@ export default function Login(prop) {
 
     const handleLogin = () => {
         axiosInstance.post(`/login`, login_in).then((res) => {
-            console.log(res.data.length);
-            if (res.data.length == 0) {
+            console.log(res.data[0]);
+            if (res.data.length === 0) {
                 setError('Sai thông tin đăng nhập')
             }
             else {
-                setData(res.data)
                 setError('')
-                navigate("/Trangchu");
+                prop.getJWT(res.data[0]);
             }
         })
     }

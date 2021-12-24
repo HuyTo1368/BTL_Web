@@ -15,8 +15,11 @@ import Success from "./components/enter_data/Success.js";
 
 
 function App() {
-  const [state, setState] = useState({})
-  
+  const [state, setState] = useState({
+    user: "40",
+    role: "A2"
+  })
+  console.log(state.user, state.role)
   return (
     <div className="App">
       <>
@@ -28,10 +31,10 @@ function App() {
               <Route path="Phantich" element={<PhanTich />} />
               <Route path="Member/addMember" element={<AddMember />} />
               <Route path="Nhaplieu" element={<EnterData/>} />
-              <Route path="Danhsach" element={<ListResume />} />
-              <Route path="Tracuu" element={<Search/>} />
+              <Route path="Danhsach" element={<ListResume unitad = {state}/>} />
+              <Route path="Tracuu" element={<Search unitad = {state}/>} />
               <Route path="Success" element={<Success/>} />
-          </Route>
+          </Route> 
         </Routes>
       </>
     </div>
