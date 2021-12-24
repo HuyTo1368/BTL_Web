@@ -61,6 +61,7 @@
   
   .lrow label{
     align-self: start;
+    margin: auto;
     padding-bottom: 0.5rem;
     color: rgba(2, 2, 2, 0.9);
   }

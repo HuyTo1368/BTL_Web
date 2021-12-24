@@ -4,6 +4,8 @@ import Select from "../public/select_address/select";
 import axiosInstance from "../public/axios/axios";
 
 export default function ListResume(props) {
+    const data = props.unitad;
+
     const [peopleList, setpeopleList] = useState([]);
     const [tinh, setTinh] = useState();
     const [huyen, setHuyen] = useState();
@@ -19,17 +21,21 @@ export default function ListResume(props) {
     const showResume = () => {
         axiosInstance.get(`/show?tinh=${tinh}&huyen=${huyen}&xa=${xa}`).then((response) => {
             setpeopleList(response.data)
-            console.log(response.data);
         })
-            .catch(err => console.log(err))
-            
+            .catch(err => console.log(err)) ;
+        console.log(data)
     }
     
     return (
         <div className="listResume">
             <div id="head_listResume">
-                <Select parentCallback={callbackFunction}/>
-                <button className="clickList" onClick={showResume}>Xem danh sách</button>
+                <Select parentCallback={callbackFunction} check={data}/>
+                <button 
+                className="clickList" 
+                onClick={showResume}
+                style={{marginTop: '1vh'}}
+                >
+                Xem danh sách</button>
             </div>
 
             <table id="list_people">

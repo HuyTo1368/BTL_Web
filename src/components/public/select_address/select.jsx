@@ -5,6 +5,7 @@ import './select.css'
 
 
 export default function Select(props) {
+    const data = props.check;
     const [listProvince, setlistProvince] = useState([]);
     const [listTown, setlistTown] = useState([]);
     const [listVillage, setlistVillage] = useState([]);
@@ -18,19 +19,19 @@ export default function Select(props) {
     }
 
     useEffect(() => {
-        axiosInstance.get('/select').then((res) => {
+        axiosInstance.get(`/select?role=${data.role}&user=${data.user}`).then((res) => {
             setlistProvince(res.data);
         })
     }, []);
 
     useEffect(() => {
-        axiosInstance.get(`/select/town?province=${province}`).then((res) => {
+        axiosInstance.get(`/select/town?province=${province}&role=${data.role}&user=${data.user}`).then((res) => {
             setlistTown(res.data);
         })
     }, [province]);
-
+   
     useEffect(() => {
-        axiosInstance.get(`/select/village?province=${province}&town=${town}`).then((res) => {
+        axiosInstance.get(`/select/village?province=${province}&town=${town}&role=${data.role}&user=${data.user}`).then((res) => {
             setlistVillage(res.data);
         })
         
