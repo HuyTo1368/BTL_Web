@@ -5,9 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import sha256 from 'crypto-js/sha256';
 
 export default function Login(prop) {
-    const [data, setData] = useState({});
-    prop.getJWT(data)
-    // console.log(prop.getJWT);
     const [error, setError] = useState('')
     const navigate = useNavigate();
 
@@ -18,13 +15,15 @@ export default function Login(prop) {
 
     const handleLogin = () => {
         axiosInstance.post(`/login`, login_in).then((res) => {
-            if (res.data.length == 0) {
-                setError('Sai thông tin đăng nhập')
-            }
-            else {
-                setData(res.data[0])
-                setError('')
+                prop.getJWT(res.data);
+                setError('');
                 navigate("/Trangchu");
+
+            }
+        )
+        .catch(function (error) {
+            if (error.response.status === 403) {
+                setError('Sai thông tin đăng nhập')
             }
         })
     }

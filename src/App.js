@@ -12,7 +12,7 @@ import "./App.css";
 import ListResume from "./components/list_resume/list_resume";
 import Search from "./components/search_resume/search_resume";
 import Success from "./components/enter_data/Success.js";
-import Provider from "./components/public/storage/Provider.js";
+import Provider from "./components/public/storage/Provider";
 import { createContext } from "react";
 
 export const Theme = createContext();
@@ -35,7 +35,6 @@ function App() {
                 )
               }
             />
-
             <Route path="/Trangchu" element={<Tranghai />}>
               <Route path="Tiendo" element={<Tiendo />} />
               <Route path="Member" element={<Member />} />
