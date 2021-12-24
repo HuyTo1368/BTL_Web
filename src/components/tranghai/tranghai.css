@@ -8,12 +8,18 @@
 
 .khunglamviec {
 
+    padding-bottom: 1vh;
     margin-left: 10px;
     border: 5px solid rgb(35, 115, 219);
     width: 82vw;
     overflow: auto;
+    background-color: rgb(238, 235, 235);
 }
 
 .fter {
     margin-top: 2vh;
+}
+
+.khungtimkiem {
+    margin: auto;
 }

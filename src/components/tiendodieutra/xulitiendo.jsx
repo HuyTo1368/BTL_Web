@@ -25,6 +25,8 @@ import Select from "../public/select_address/select";
  
 
   var abc
+var a = 250;
+var c = 300;
 
   
 
