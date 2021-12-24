@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router";
 import { useState } from "react";
 import Login from "./components/trangdau/Trangdau.jsx";
@@ -14,24 +14,32 @@ import Search from "./components/search_resume/search_resume";
 import Success from "./components/enter_data/Success.js";
 import Provider from "./components/public/storage/Provider";
 import { createContext } from "react";
-
+import axiosInstance from "./components/public/axios/axios.js";
 export const Theme = createContext();
 
 function App() {
-  const [state, setState] = useState({});
-  console.log(state);
+  const [dataUser, setDataUser] = useState({});
+  useEffect(()=>{
+    if (!dataUser.user)
+      axiosInstance.get("/current-user").then(res => {
+        setDataUser(res.data)
+
+      }).catch(err => {
+        throw err;
+      }); 
+  },[])
   return (
     <div className="App">
       <>
-        <Theme.Provider value={state}>
+        <Theme.Provider value={dataUser}>
           <Routes>
             <Route
               path="/"
               element={
-                state.token ? (
+                dataUser.token ? (
                   <Navigate to="/Trangchu" />
                 ) : (
-                  <Login getJWT={setState} />
+                  <Login  />
                 )
               }
             />
@@ -41,8 +49,8 @@ function App() {
               <Route path="Phantich" element={<PhanTich />} />
               <Route path="Member/addMember" element={<AddMember />} />
               <Route path="Nhaplieu" element={<EnterData/>} />
-              <Route path="Danhsach" element={<ListResume unitad = {state}/>} />
-              <Route path="Tracuu" element={<Search unitad = {state}/>} />
+              <Route path="Danhsach" element={<ListResume unitad = {dataUser}/>} />
+              <Route path="Tracuu" element={<Search unitad = {dataUser}/>} />
               <Route path="Success" element={<Success/>} />
             </Route>
           </Routes>
