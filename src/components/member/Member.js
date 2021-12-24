@@ -8,7 +8,9 @@ import styte from "./Member.css";
 export default function Member() {
   const [listUser, setListUser] = useState([]);
   useEffect(() => {
-    axiosInstance.get("./member/user").then((res) => {
+    axiosInstance.get("./member/user",{
+      
+    }).then((res) => {
       setListUser(res.data);
       // console.log(res.data);
     });

@@ -16,7 +16,9 @@ export default function Login(prop) {
     });
 
     const handleLogin = () => {
-        axiosInstance.post(`/login`, login_in).then((res) => {
+        axiosInstance.post(`/login`, {
+            credentials: 'include',
+            body:login_in}).then((res) => {
             if (res.data.length == 0) {
                 setError('Sai thông tin đăng nhập')
             }
