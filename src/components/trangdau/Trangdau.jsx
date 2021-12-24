@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import sha256 from 'crypto-js/sha256';
 
 export default function Login(prop) {
+    const [data, setData] = useState({});
+    prop.getJWT(data)
+    // console.log(prop.getJWT);
     const [error, setError] = useState('')
     const navigate = useNavigate();
 
@@ -19,8 +22,9 @@ export default function Login(prop) {
                 setError('Sai thông tin đăng nhập')
             }
             else {
+                setData(res.data[0])
                 setError('')
-                prop.getJWT(res.data[0]);
+                navigate("/Trangchu");
             }
         })
     }

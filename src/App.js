@@ -18,10 +18,6 @@ import { createContext } from "react";
 export const Theme = createContext();
 
 function App() {
-  const [state1, setState1] = useState({
-    user: "40",
-    role: "A2"
-  })
   const [state, setState] = useState({});
   console.log(state);
   return (
@@ -35,7 +31,7 @@ function App() {
                 state.token ? (
                   <Navigate to="/Trangchu" />
                 ) : (
-                  <Login getJWT={setState1} />
+                  <Login getJWT={setState} />
                 )
               }
             />
@@ -46,8 +42,8 @@ function App() {
               <Route path="Phantich" element={<PhanTich />} />
               <Route path="Member/addMember" element={<AddMember />} />
               <Route path="Nhaplieu" element={<EnterData/>} />
-              <Route path="Danhsach" element={<ListResume unitad = {state1}/>} />
-              <Route path="Tracuu" element={<Search unitad = {state1}/>} />
+              <Route path="Danhsach" element={<ListResume unitad = {state}/>} />
+              <Route path="Tracuu" element={<Search unitad = {state}/>} />
               <Route path="Success" element={<Success/>} />
             </Route>
           </Routes>
