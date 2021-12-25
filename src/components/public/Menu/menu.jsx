@@ -13,11 +13,12 @@ const tabs = [
 ];
 
 export default function Menu(props) {
+  const [state, setState] = useState()
   return (
     <div>
       <div className="menu1">
         <Link to="./Tiendo">
-          <button className="active">Tiến độ điều tra</button>
+          <button className="active" >Tiến độ điều tra</button>
         </Link>
       </div>
       <div className="menu1">
@@ -36,8 +37,13 @@ export default function Menu(props) {
         </Link>
       </div>
       <div className="menu1">
-        <Link to="./Member">
+        <Link to="./addMember">
           <button className="active">Cấp tài khoản</button>
+        </Link>
+      </div>
+      <div className="menu1">
+        <Link to="./Member">
+          <button className="active">Quản lí tài khoản</button>
         </Link>
       </div>
       <div className="menu1">

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Routes, Route, Navigate } from "react-router";
 import { useState } from "react";
 import Login from "./components/trangdau/Trangdau.jsx";
@@ -31,7 +31,7 @@ function App() {
           throw err;
         });
   }, []);
-  console.log(dataUser.logined);
+
   return (
     <div className="App">
       <>
@@ -50,7 +50,7 @@ function App() {
               <Route path="Tiendo" element={<Tiendo />} />
               <Route path="Member" element={<Member />} />
               <Route path="Phantich" element={<PhanTich />} />
-              <Route path="Member/addMember" element={<AddMember />} />
+              <Route path="addMember" element={<AddMember />} />
               <Route path="Nhaplieu" element={<EnterData />} />
               <Route
                 path="Danhsach"

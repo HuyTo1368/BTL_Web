@@ -1,6 +1,5 @@
 .containerr {
   position: relative;
-
   width: 50%;
   left: 25%;
 }
@@ -13,4 +12,8 @@
     text-align: left;
     color: red;
     
+}
+.name{
+
+  margin-bottom: 25px;
 }
