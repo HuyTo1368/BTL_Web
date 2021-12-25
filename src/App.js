@@ -18,16 +18,20 @@ import axiosInstance from "./components/public/axios/axios.js";
 export const Theme = createContext();
 
 function App() {
-  const [dataUser, setDataUser] = useState({});
-  useEffect(()=>{
+  const [dataUser, setDataUser] = useState({ logined: false });
+  useEffect(() => {
     if (!dataUser.user)
-      axiosInstance.get("/current-user").then(res => {
-        setDataUser(res.data)
-
-      }).catch(err => {
-        throw err;
-      }); 
-  },[])
+      axiosInstance
+        .get("/current-user")
+        .then((res) => {
+          console.log("da nhan duoc");
+          setDataUser({ ...res.data, logined: true });
+        })
+        .catch((err) => {
+          throw err;
+        });
+  }, []);
+  console.log(dataUser.logined);
   return (
     <div className="App">
       <>
@@ -36,22 +40,24 @@ function App() {
             <Route
               path="/"
               element={
-                dataUser.token ? (
-                  <Navigate to="/Trangchu" />
-                ) : (
-                  <Login  />
-                )
+                dataUser.logined ? <Navigate to="/Trangchu" /> : <Login />
               }
             />
-            <Route path="/Trangchu" element={<Tranghai />}>
+            <Route
+              path="/Trangchu"
+              element={ <Tranghai />}
+            >
               <Route path="Tiendo" element={<Tiendo />} />
               <Route path="Member" element={<Member />} />
               <Route path="Phantich" element={<PhanTich />} />
               <Route path="Member/addMember" element={<AddMember />} />
-              <Route path="Nhaplieu" element={<EnterData/>} />
-              <Route path="Danhsach" element={<ListResume unitad = {dataUser}/>} />
-              <Route path="Tracuu" element={<Search unitad = {dataUser}/>} />
-              <Route path="Success" element={<Success/>} />
+              <Route path="Nhaplieu" element={<EnterData />} />
+              <Route
+                path="Danhsach"
+                element={<ListResume unitad={dataUser} />}
+              />
+              <Route path="Tracuu" element={<Search unitad={dataUser} />} />
+              <Route path="Success" element={<Success />} />
             </Route>
           </Routes>
         </Theme.Provider>

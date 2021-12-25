@@ -126,7 +126,7 @@ export default function AddMember() {
         </div>
         <br />
         <br />
-        <button type="submit" class="btn btn-primary " onClick={sendAPI}>
+        <button  class="btn btn-primary " onClick={sendAPI}>
           Xác nhận
         </button>
       </div>
