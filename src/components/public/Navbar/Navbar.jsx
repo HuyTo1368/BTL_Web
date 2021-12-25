@@ -1,7 +1,14 @@
 import React from "react";
 import './Navbar.css'
-
+import { useState } from "react";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 export default function Navbar(props) {
+    const handleLogout = () => {
+        cookies.remove('token', { path: '/' });
+        
+      }
+
     return (
         <div className="tieude">
             <div className="logo_danso">
@@ -9,7 +16,7 @@ export default function Navbar(props) {
             </div>
             <div className="khungphai">
                 <div>Xin chào {props.id} | </div>
-                <a href="/">Đăng xuất</a>
+                <a href="/" onClick={handleLogout}>Đăng xuất</a>
             </div>
         </div>
     )
