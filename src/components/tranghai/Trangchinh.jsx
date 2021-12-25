@@ -1,17 +1,13 @@
 import React from "react";
-import { BrowserRouter, Link, Route, Routes,Outlet } from "react-router-dom";
+import { BrowserRouter,  Route, Outlet } from "react-router-dom";
 import Menu from "../public/Menu/menu";
 import Navbar from "../public/Navbar/Navbar"
 import Footer from "../public/footer/footer";
 import "./tranghai.css";
-import { Tiendo } from "../tiendodieutra/tiendodieutra";
-import { useState } from "react";
-import PhanTich from "../phantichsolieu/phantichsolieu";
-import Trangdau from "../trangdau/Trangdau";
-import AddMember from "../member/AddMember";
 import Member from "../member/Member";
 import { useContext } from "react";
 import { Theme } from "../../App";
+
 export default function Tranghai(props) {
   const Temp = () =>{
       return(

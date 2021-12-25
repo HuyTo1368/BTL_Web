@@ -10,6 +10,11 @@ body{
 
 }
 
+.tieude a:hover {
+	color: red;
+	cursor: pointer;
+}
+
 .khungphai {
 	font-size: 18px;
 	display: flex;
@@ -27,4 +32,11 @@ body{
 .logo_danso {
     margin-left: 10px;
     margin-top: 2px;
+}
+
+@media screen and (max-width: 800px) {
+    .khungphai {
+        right: 3vw;
+		font-size: 13px;
+    }
 }

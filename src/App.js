@@ -15,23 +15,27 @@ import Success from "./components/enter_data/Success.js";
 import Provider from "./components/public/storage/Provider";
 import { createContext } from "react";
 import axiosInstance from "./components/public/axios/axios.js";
+
 export const Theme = createContext();
 
 function App() {
   const [dataUser, setDataUser] = useState({});
-  useEffect(()=>{
+
+  useEffect(() => {
     if (!dataUser.user)
       axiosInstance.get("/current-user").then(res => {
         setDataUser(res.data)
-
       }).catch(err => {
         throw err;
-      }); 
-  },[])
+      });
+  }, [])
+
+  console.log(dataUser)
+
   return (
     <div className="App">
       <>
-        <Theme.Provider value={dataUser}>
+        <Theme.Provider value={setDataUser}>
           <Routes>
             <Route
               path="/"
@@ -39,19 +43,19 @@ function App() {
                 dataUser.token ? (
                   <Navigate to="/Trangchu" />
                 ) : (
-                  <Login  />
+                  <Login />
                 )
               }
             />
-            <Route path="/Trangchu" element={<Tranghai id={state.user}/>}>
+            <Route exact path="/Trangchu" element={<Tranghai id={dataUser.user} />}>
               <Route path="Tiendo" element={<Tiendo />} />
               <Route path="Member" element={<Member />} />
               <Route path="Phantich" element={<PhanTich />} />
               <Route path="Member/addMember" element={<AddMember />} />
-              <Route path="Nhaplieu" element={<EnterData/>} />
-              <Route path="Danhsach" element={<ListResume unitad = {dataUser}/>} />
-              <Route path="Tracuu" element={<Search unitad = {dataUser}/>} />
-              <Route path="Success" element={<Success/>} />
+              <Route path="Nhaplieu" element={<EnterData />} />
+              <Route path="Danhsach" element={<ListResume unitad={dataUser} />} />
+              <Route path="Tracuu" element={<Search unitad={dataUser} />} />
+              <Route path="Success" element={<Success />} />
             </Route>
           </Routes>
         </Theme.Provider>

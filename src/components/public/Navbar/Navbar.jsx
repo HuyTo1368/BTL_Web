@@ -1,13 +1,12 @@
 import React from "react";
 import './Navbar.css'
-import { useState } from "react";
 import Cookies from 'universal-cookie';
 const cookies = new Cookies();
+
 export default function Navbar(props) {
     const handleLogout = () => {
         cookies.remove('token', { path: '/' });
-        
-      }
+    }
 
     return (
         <div className="tieude">

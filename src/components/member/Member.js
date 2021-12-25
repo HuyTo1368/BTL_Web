@@ -1,8 +1,8 @@
-import react, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Alert } from "react-bootstrap";
+import { Button} from "react-bootstrap";
 import axiosInstance from "../public/axios/axios";
-import styte from "./Member.css";
+import './Member.css';
 import { useContext } from "react";
 import { Theme } from "../../App";
 // import 'bootstrap/dist/css/bootstrap.min.css';

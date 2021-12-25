@@ -1,10 +1,12 @@
 import "./trangdau.css";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axiosInstance from "../public/axios/axios";
 import { useNavigate } from "react-router-dom";
 import sha256 from "crypto-js/sha256";
+import { Theme } from "../../App";
 
 export default function Login() {
+  const context = useContext(Theme);
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -20,7 +22,7 @@ export default function Login() {
         body: login_in,
       })
       .then((res) => {
-        // prop.getJWT(res.data);
+        context(res.data);
         setError("");
         navigate("/Trangchu");
       })

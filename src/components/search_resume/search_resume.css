@@ -36,3 +36,21 @@
 .styled-table tbody td {
     border: 1px solid #dddddd;
 }
+
+.datebirth {
+    width: 6vw;
+}
+
+@media screen and (max-width: 800px) {
+    .styled-table {
+        border-collapse: collapse;
+        font-size: 11px;
+        font-family: sans-serif;
+        box-shadow: 0 0 18px rgba(0, 0, 0, 0.15);
+        margin: auto;
+    }
+
+    .datebirth {
+        width: 8vw;
+    }
+}

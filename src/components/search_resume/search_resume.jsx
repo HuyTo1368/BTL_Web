@@ -16,37 +16,36 @@ export default function Search(props) {
     const [job, setJob] = useState('');
     const [religion, setReligion] = useState('');
     const [danhsach, setDanhsach] = useState([]);
-    const check = 0;
 
     useEffect(() => {
         axiosInstance.get(`/select?role=${data.role}&user=${data.user}`).then((res) => {
             setlistProvince(res.data);
         })
-    }, []);
+    }, [data.role, data.user]);
 
     useEffect(() => {
         axiosInstance.get(`/select/town?province=${province}&role=${data.role}&user=${data.user}`).then((res) => {
             setlistTown(res.data);
         })
-    }, [province]);
+    }, [data.role, data.user, province]);
 
     useEffect(() => {
         axiosInstance.get(`/select/village?province=${province}&town=${town}&role=${data.role}&user=${data.user}`).then((res) => {
             setlistVillage(res.data);
         })
-        if (province == "1") {
+        if (province === "1") {
             setTown('all_province')
         }
-        if (town == 'all_province') {
+        if (town === 'all_province') {
             setVillage('all_town')
         }
-    }, [province, town]);
+    }, [data.role, data.user, province, town]);
 
     useEffect(() => {
         axiosInstance.get(`/search?province=${province}&town=${town}&village=${village}&fullname=${fullname}&cccd=${cccd}&hometown=${hometown}&job=${job}&religion=${religion}&role=${data.role}&user=${data.user}`).then((res) => {
                 setDanhsach(res.data);
         })
-    }, [province, town, village, fullname, cccd, hometown, job, religion]);
+    }, [province, town, village, fullname, cccd, hometown, job, religion, data.role, data.user]);
 
     return (
         <div className="se">
@@ -55,9 +54,9 @@ export default function Search(props) {
                 <thead>
                     <tr>
                         <th style={{ width: '8vw' }}>Họ và tên</th>
-                        <th style={{ width: '6vw' }}>CMND</th>
+                        <th style={{ width: '7vw' }}>CMND</th>
                         <th style={{ width: '5vw' }}>Giới tính</th>
-                        <th style={{ width: '5vw' }}>Ngày sinh</th>
+                        <th className=".datebirth">Ngày sinh</th>
                         <th style={{ width: '8vw' }}>Quê quán</th>
                         <th style={{ width: '6vw' }}>Nghề nghiệp</th>
                         <th style={{ width: '4vw' }}>Dân tộc</th>
@@ -68,7 +67,7 @@ export default function Search(props) {
                 </thead>
                 <tbody>
                     <tr>
-                        <td className="se_name">
+                        <td className="se_name" style={{ width: '8vw' }}>
                             <input
                                 name="fullname"
                                 style={{ width: '8vw' }}
@@ -76,19 +75,19 @@ export default function Search(props) {
                                 onBlur={e => setFullname(e.target.value)}
                             />
                         </td>
-                        <td>
+                        <td style={{ width: '7vw' }}>
                             <input
                                 name="cmnd"
-                                style={{ width: '6vw' }}
+                                style={{ width: '7vw' }}
                                 type="text"
                                 onBlur={e => setCccd(e.target.value)}
                             />
                         </td>
-                        <td>
+                        <td style={{ width: '5vw' }}>
                         </td>
-                        <td>
+                        <td className=".datebirth">
                         </td>
-                        <td>
+                        <td style={{ width: '8vw' }}>
                             <input
                                 name="quequan"
                                 style={{ width: '8vw' }}
@@ -96,21 +95,21 @@ export default function Search(props) {
                                 onBlur={e => sethometown(e.target.value)}
                             />
                         </td>
-                        <td>
+                        <td style={{ width: '6vw' }}>
                             <input
                                 style={{ width: '6vw' }}
                                 type="text"
                                 onBlur={e => setJob(e.target.value)}
                             />
                         </td>
-                        <td>
+                        <td style={{ width: '4vw' }}>
                             <input
                                 style={{ width: '4vw' }}
                                 type="text"
                                 onBlur={e => setReligion(e.target.value)}
                             />
                         </td>
-                        <td style={{ width: '6vw' }}>
+                        <td style={{ width: '7vw' }}>
                             <select
                                 style={{ width: '7vw' }}
                                 onChange={e => setVillage(e.target.value)}
@@ -125,7 +124,7 @@ export default function Search(props) {
                                 })}
                             </select>
                         </td>
-                        <td>
+                        <td style={{ width: '7vw' }}>
                             <select
                                 style={{ width: '7vw' }}
                                 onChange={e => setTown(e.target.value)}>
@@ -139,7 +138,7 @@ export default function Search(props) {
                                 })}
                             </select>
                         </td>
-                        <td>
+                        <td style={{ width: '8vw' }}>
                             <select
                                 style={{ width: '8vw' }}
                                 onChange={e => setProvince(e.target.value)}
@@ -158,16 +157,16 @@ export default function Search(props) {
                     {danhsach.map((val, key) => {
                         return (
                             <tr key={val.CCCD}>
-                                <td>{val.fullname}</td>
-                                <td>{val.CCCD}</td>
-                                <td>{val.gender}</td>
-                                <td>{val.datebirth}</td>
-                                <td>{val.hometown}</td>
-                                <td>{val.job}</td>
-                                <td>{val.religion}</td>
-                                <td>{val.village}</td>
-                                <td>{val.town}</td>
-                                <td>{val.province}</td>
+                                <td style={{ width: '8vw' }}>{val.fullname}</td>
+                                <td style={{ width: '7vw' }}>{val.CCCD}</td>
+                                <td style={{ width: '5vw' }}>{val.gender}</td>
+                                <td className=".datebirth">{val.datebirth}</td>
+                                <td style={{ width: '8vw' }}>{val.hometown}</td>
+                                <td style={{ width: '6vw' }}>{val.job}</td>
+                                <td style={{ width: '4vw' }}>{val.religion}</td>
+                                <td style={{ width: '7vw' }}>{val.village}</td>
+                                <td style={{ width: '7vw' }}>{val.town}</td>
+                                <td style={{ width: '8vw' }}>{val.province}</td>
                             </tr>
                         )
                     })}
