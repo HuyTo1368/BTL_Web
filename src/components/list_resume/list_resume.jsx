@@ -11,7 +11,6 @@ export default function ListResume(props) {
     const [huyen, setHuyen] = useState();
     const [xa, setXa] = useState();
 
-
     const callbackFunction = (Stinh, Shuyen, Sxa) => {
         setTinh(Stinh);
         setHuyen(Shuyen);
@@ -19,7 +18,7 @@ export default function ListResume(props) {
     };
 
     const showResume = () => {
-        axiosInstance.get(`/show?tinh=${tinh}&huyen=${huyen}&xa=${xa}`).then((response) => {
+        axiosInstance.get(`/show?tinh=${tinh}&huyen=${huyen}&xa=${xa}&role=${data.role}`).then((response) => {
             setpeopleList(response.data)
         })
             .catch(err => console.log(err)) ;

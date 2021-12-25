@@ -12,7 +12,6 @@ export default function Select(props) {
     const [province, setProvince] = useState('');
     const [town, setTown] = useState('all_province');
     const [village, setVillage] = useState('all_town');
-    const [chon, setChon] = useState('Huy');
 
     const sendData = (a, b, c) => {
         props.parentCallback(a, b, c)
