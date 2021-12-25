@@ -31,13 +31,13 @@ var c = 300;
   
 
   useEffect(() => {
-      axios.get('http://localhost:3000/select').then((res) => {
+      axios.get('http://localhost:5000/select').then((res) => {
           setlistProvince(res.data);
       })
   }, []);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/show1?dan1=${province}&dan11=${town}&dan111=${village}`).then((res) => {
+    axios.get(`http://localhost:5000/show1?dan1=${province}&dan11=${town}&dan111=${village}`).then((res) => {
       console.log(res.data[0].tong);
       setPopuPro(res.data[0].tong)
       setPopuReal(res.data[0].total)
@@ -45,20 +45,20 @@ var c = 300;
   }, [province,town,village]);
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/show2?dan1=${province}&dan11=${town}&dan111=${village}`).then((res) => {
+    axios.get(`http://localhost:5000/show2?dan1=${province}&dan11=${town}&dan111=${village}`).then((res) => {
       console.log(res.data);
   })
   }, [province,town,village]);
 
 
   useEffect(() => {
-      axios.get(`http://localhost:3000/select/town?province=${province}`).then((res) => {
+      axios.get(`http://localhost:5000/select/town?province=${province}`).then((res) => {
           setlistTown(res.data);
       })
   }, [province]);
  
   useEffect(() => {
-      axios.get(`http://localhost:3000/select/village?province=${province}&town=${town}`).then((res) => {
+      axios.get(`http://localhost:5000/select/village?province=${province}&town=${town}`).then((res) => {
           setlistVillage(res.data);
       })
   }, [province, town]);

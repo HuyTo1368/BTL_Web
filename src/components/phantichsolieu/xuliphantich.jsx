@@ -60,13 +60,13 @@ export default function Xuliphantich(props) {
     const[eachReligion5,setEachReligion5] = useState('')
 
   useEffect(() => {
-    axios.get('http://localhost:3000/select').then((res) => {
+    axios.get('http://localhost:5000/select').then((res) => {
         setlistProvince(res.data);
     })
 }, []);
 // giới tính nam
 useEffect(() => {
-  axios.get(`http://localhost:3000/show2?dan1=${province}&dan11=${town}&dan111=${village}`).then((res) => {
+  axios.get(`http://localhost:5000/show2?dan1=${province}&dan11=${town}&dan111=${village}`).then((res) => {
     // console.log(res.data[0].Nam);
     setGender1(res.data[0].Nam);
 })
@@ -74,7 +74,7 @@ useEffect(() => {
 
 //giới tính nữ
 useEffect(() => {
-    axios.get(`http://localhost:3000/show3?dan1=${province}&dan11=${town}&dan111=${village}`).then((res1) => {
+    axios.get(`http://localhost:5000/show3?dan1=${province}&dan11=${town}&dan111=${village}`).then((res1) => {
     //   console.log(res1.data);
       setGender2(res1.data[0].Nu);   
   })
@@ -82,7 +82,7 @@ useEffect(() => {
 
 // trên 18 tuổi
 useEffect(() => {
-    axios.get(`http://localhost:3000/show4?dan1=${province}&dan11=${town}&dan111=${village}`).then((res2) => {
+    axios.get(`http://localhost:5000/show4?dan1=${province}&dan11=${town}&dan111=${village}`).then((res2) => {
     //   console.log(res2.data);
       setOlder(res2.data[0].older);   
   })
@@ -90,7 +90,7 @@ useEffect(() => {
 
 // dưới 18 tuổi 
 useEffect(() => {
-    axios.get(`http://localhost:3000/show5?dan1=${province}&dan11=${town}&dan111=${village}`).then((res3) => {
+    axios.get(`http://localhost:5000/show5?dan1=${province}&dan11=${town}&dan111=${village}`).then((res3) => {
     //   console.log(res3.data);
       setTeenager(res3.data[0].young);   
   })
@@ -98,7 +98,7 @@ useEffect(() => {
 
 //thống kê dân tộc
 useEffect(() => {
-    axios.get(`http://localhost:3000/show6?dan1=${province}&dan11=${town}&dan111=${village}`).then((res4) => {
+    axios.get(`http://localhost:5000/show6?dan1=${province}&dan11=${town}&dan111=${village}`).then((res4) => {
         console.log(res4.data)
        if(res4.data.length == 0){
            console.log('no data')
@@ -131,13 +131,13 @@ useEffect(() => {
   }, [province,town,village]);
 
 useEffect(() => {
-    axios.get(`http://localhost:3000/select/town?province=${province}`).then((res) => {
+    axios.get(`http://localhost:5000/select/town?province=${province}`).then((res) => {
         setlistTown(res.data);
     })
 }, [province]);
 
 useEffect(() => {
-    axios.get(`http://localhost:3000/select/village?province=${province}&town=${town}`).then((res) => {
+    axios.get(`http://localhost:5000/select/village?province=${province}&town=${town}`).then((res) => {
         setlistVillage(res.data);
     })
 }, [province, town]);
