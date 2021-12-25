@@ -56,13 +56,37 @@ tbody .ppname {
 }
 
 .ppgender {
-    width: 6vw;
+    width: 7vw;
 }
 
 .ppaddress {
-    width: 15vw;
+    width: 18vw;
 }
 
 .ppreligion {
     width: 5vw;
+}
+
+.clickList {
+    color: #282c29;
+    font-weight: bold;
+    background: rgb(61, 172, 173);
+    background: linear-gradient(90deg, rgb(54, 180, 182) 0%,     rgb(223, 220, 84)100%);
+    border: 5px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    #list_people {
+        font-size: 13px;
+    }
+    .ppgender {
+        width: 8vw;
+    }
+    .ppreligion {
+        width: 8vw;
+    }
+    .ppaddress {
+        width: 20vw;
+    }
 }

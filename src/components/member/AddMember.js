@@ -18,8 +18,9 @@ export default function AddMember() {
     password: "",
     passwordAgain: "",
   });
-
-  const dataUser = useContext(Theme);
+  
+  const dataUser = useContext(Theme).dataUser;
+  
   const role = dataUser.role;
   var roleDown;
   var levelUnit;

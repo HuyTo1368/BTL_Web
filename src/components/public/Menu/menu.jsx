@@ -1,7 +1,6 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-
-import "./menu.css";
+import './menu.css'
 
 const tabs = [
   "Tiến độ điều tra",
@@ -14,16 +13,18 @@ const tabs = [
 
 export default function Menu(props) {
   const [state, setState] = useState()
+  const role = props.value.role
+
   return (
     <div>
       <div className="menu1">
         <Link to="./Tiendo">
-          <button className="active" >Tiến độ điều tra</button>
+          <button className='active'>Tiến độ điều tra</button>
         </Link>
       </div>
       <div className="menu1">
         <Link to="./Phantich">
-          <button className="active">Phân tích số liệu</button>
+          <button className='active'>Phân tích số liệu</button>
         </Link>
       </div>
       <div className="menu1">

@@ -48,7 +48,7 @@
     list-style: none; 
 }
 .legend_phan_tich li { 
-    float: left; 
+    float: inherit; 
     top: 200px;
     margin-top: 20px;
     margin-left: 20px;
@@ -68,3 +68,10 @@
 .legend_phan_tich .legend_2 { background-color: rgb(71, 128, 18); }
 .legend_phan_tich .legend_3 { background-color: #ce5d30; }
 .legend_phan_tich .legend_4 { background-color: #d48d7c; }
+
+@media screen and (max-width: 800px) {
+    .legend_phan_tich {
+        margin-bottom: 50px;
+        border-bottom: 1px dotted rgba(56, 70, 59, 0.952);
+    }
+}

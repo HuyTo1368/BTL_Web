@@ -1,8 +1,8 @@
-import react, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Button, Alert } from "react-bootstrap";
+import { Button} from "react-bootstrap";
 import axiosInstance from "../public/axios/axios";
-import styte from "./Member.css";
+import './Member.css';
 import { useContext } from "react";
 import { Theme } from "../../App";
 import AutoFixNormalIcon from "@mui/icons-material/AutoFixNormal";
@@ -10,7 +10,10 @@ import AutoFixOffIcon from "@mui/icons-material/AutoFixOff";
 import moment from "moment";
 
 export default function Member() {
-  const inforUser = useContext(Theme);
+
+  const tmm = useContext(Theme);
+  const inforUser = tmm.dataUser
+
   const [listUser, setListUser] = useState([]);
   const [timeOpen, setTimeOpen] = useState();
   const [timeClose, setTimeClose] = useState();
