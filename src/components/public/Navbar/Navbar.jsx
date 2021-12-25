@@ -8,8 +8,8 @@ export default function Navbar(props) {
                 <img src="https://data.gov.vn/o/govTheme/images/gov/logo_cong.svg" />
             </div>
             <div className="khungphai">
-                <div>Xin chào Seo | </div>
-                <a href="huy">Đăng xuất</a>
+                <div>Xin chào {props.id} | </div>
+                <a href="/">Đăng xuất</a>
             </div>
         </div>
     )

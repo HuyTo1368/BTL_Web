@@ -35,7 +35,7 @@ function App() {
                 )
               }
             />
-            <Route path="/Trangchu" element={<Tranghai />}>
+            <Route path="/Trangchu" element={<Tranghai id={state.user}/>}>
               <Route path="Tiendo" element={<Tiendo />} />
               <Route path="Member" element={<Member />} />
               <Route path="Phantich" element={<PhanTich />} />

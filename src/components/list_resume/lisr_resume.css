@@ -66,3 +66,12 @@ tbody .ppname {
 .ppreligion {
     width: 5vw;
 }
+
+.clickList {
+    color: #282c29;
+    font-weight: bold;
+    background: rgb(61, 172, 173);
+    background: linear-gradient(90deg, rgb(54, 180, 182) 0%,     rgb(223, 220, 84)100%);
+    border: 5px;
+    cursor: pointer;
+}

@@ -24,7 +24,7 @@ export default function Tranghai(props) {
   return (
     <div>
       <div>
-        <Navbar />
+        <Navbar id = {props.id}/>
       </div>
 
       <div className="display">
