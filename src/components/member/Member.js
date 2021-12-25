@@ -3,16 +3,21 @@ import { Link } from "react-router-dom";
 import { Button, Alert } from "react-bootstrap";
 import axiosInstance from "../public/axios/axios";
 import styte from "./Member.css";
+import { useContext } from "react";
+import { Theme } from "../../App";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Member() {
+  const inforUser = useContext(Theme);
+  console.log(inforUser);
   const [listUser, setListUser] = useState([]);
   useEffect(() => {
-    axiosInstance.get("./member/user").then((res) => {
+    axiosInstance.get(`./member/user?role=${inforUser.role}&user=${inforUser.user}`,{
+    }).then((res) => {
       setListUser(res.data);
       // console.log(res.data);
     });
-  }, []);
+  }, [inforUser]);
   return (
     <>
       <div>

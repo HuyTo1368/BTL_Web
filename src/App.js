@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router";
 import { useState } from "react";
 import Login from "./components/trangdau/Trangdau.jsx";
@@ -12,38 +12,51 @@ import "./App.css";
 import ListResume from "./components/list_resume/list_resume";
 import Search from "./components/search_resume/search_resume";
 import Success from "./components/enter_data/Success.js";
-import Provider from "./components/public/storage/Provider.js";
+import Provider from "./components/public/storage/Provider";
 import { createContext } from "react";
-
+import axiosInstance from "./components/public/axios/axios.js";
 export const Theme = createContext();
 
 function App() {
-  const [state, setState] = useState({});
-  console.log(state);
+  const [dataUser, setDataUser] = useState({ logined: false });
+  useEffect(() => {
+    if (!dataUser.user)
+      axiosInstance
+        .get("/current-user")
+        .then((res) => {
+          console.log("da nhan duoc");
+          setDataUser({ ...res.data, logined: true });
+        })
+        .catch((err) => {
+          throw err;
+        });
+  }, []);
+  console.log(dataUser.logined);
   return (
     <div className="App">
       <>
-        <Theme.Provider value={state}>
+        <Theme.Provider value={dataUser}>
           <Routes>
             <Route
               path="/"
               element={
-                state.token ? (
-                  <Navigate to="/Trangchu" />
-                ) : (
-                  <Login getJWT={setState} />
-                )
+                dataUser.logined ? <Navigate to="/Trangchu" /> : <Login />
               }
             />
-
-            <Route path="/Trangchu" element={<Tranghai />}>
+            <Route
+              path="/Trangchu"
+              element={ <Tranghai />}
+            >
               <Route path="Tiendo" element={<Tiendo />} />
               <Route path="Member" element={<Member />} />
               <Route path="Phantich" element={<PhanTich />} />
               <Route path="Member/addMember" element={<AddMember />} />
               <Route path="Nhaplieu" element={<EnterData />} />
-              <Route path="Danhsach" element={<ListResume />} />
-              <Route path="Tracuu" element={<Search />} />
+              <Route
+                path="Danhsach"
+                element={<ListResume unitad={dataUser} />}
+              />
+              <Route path="Tracuu" element={<Search unitad={dataUser} />} />
               <Route path="Success" element={<Success />} />
             </Route>
           </Routes>

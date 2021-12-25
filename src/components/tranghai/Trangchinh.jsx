@@ -12,6 +12,7 @@ import AddMember from "../member/AddMember";
 import Member from "../member/Member";
 import { useContext } from "react";
 import { Theme } from "../../App";
+import { useNavigate } from 'react-router-dom';
 export default function Tranghai(props) {
   const Temp = () =>{
       return(
@@ -20,7 +21,13 @@ export default function Tranghai(props) {
           </BrowserRouter>
       )
   }
+  // const navigate =useNavigate()
   const t = useContext(Theme)
+  // if(!t.token){
+  //   console.log("da chuyen huong");
+  //   navigate('/')
+  //   window.location.reload();
+  // }
   return (
     <div>
       <div>
