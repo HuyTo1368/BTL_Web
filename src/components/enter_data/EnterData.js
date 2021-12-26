@@ -11,15 +11,16 @@ import AccessDenied from "./AccessDenied";
 export default function EnterData() {
 
   const navigate = useNavigate()
-  const dataUser = useContext(Theme).dataUser;
+  const data = useContext(Theme).dataUser;
   const roleA1 = {
     role: 'A1',
     user: 'admin'
 
   }
+  console.log(data.user);
   const [accept, setAccept] = useState(true)
   useEffect(()=>{
-    axiosInstance.get(`/Nhaplieu/check?user=${dataUser.user}`).then((res) => {
+    axiosInstance.get(`/Nhaplieu/check?user=${data.user}`).then((res) => {
       if(res.data === "no"){
         
         setAccept(false);
@@ -27,7 +28,7 @@ export default function EnterData() {
     else setAccept(true);
     
   });
-  })
+  },[data])
   const [state, setState] = useState({
     CCCD: "",
     fullName: "",
