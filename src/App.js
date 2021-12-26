@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router";
+import { Routes, Route, Navigate, useLocation } from "react-router";
 import Login from "./components/trangdau/Trangdau.jsx";
 import Tranghai from "./components/tranghai/Trangchinh.jsx";
 import Tiendo from "./components/tiendodieutra/xulitiendo";
@@ -17,7 +17,9 @@ import "./App.css";
 
 export const Theme = createContext();
 
+
 function App() {
+
   const [dataUser, setDataUser] = useState({ logined: false });
 
   const obData = {
