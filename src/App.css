@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  text-emphasis-color: white;
 }
 
 .App-logo {
@@ -36,3 +37,7 @@
     transform: rotate(360deg);
   }
 }
+ .App{
+ background-image: url(https://thuthuatnhanh.com/wp-content/uploads/2020/09/hinh-nen-cong-nghe.jpg);
+ background-repeat: no-repeat;
+ }
