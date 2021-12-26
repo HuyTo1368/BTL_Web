@@ -69,9 +69,9 @@ export default function Member() {
         <table className="styled-table">
           <thead>
             <tr>
-              <th style={{ width: "12vw" }}>Tài khoản</th>
+              <th style={{ width: "10vw" }}>Tài khoản</th>
               <th style={{ width: "12vw" }}>Tên đơn vị</th>
-              <th style={{ width: "12vw" }}>Quyền</th>
+              <th style={{ width: "11vw" }}>Quyền</th>
               <th style={{ width: "12vw" }}>Thời gian mở khai báo</th>
               <th style={{ width: "12vw" }}>Thời gian đóng khai báo</th>
               <th style={{ width: "12vw" }}>Trạng thái khai báo</th>
@@ -81,7 +81,7 @@ export default function Member() {
             {listUser.map((val, index) => {
               return (
                 <tr key={val.user}>
-                  <td>{val.user}</td>
+                  <td style={{ width: "10vw" }}>{val.user}</td>
 
                   <td>{val.name_unit}</td>
                   <td>{val.role}</td>

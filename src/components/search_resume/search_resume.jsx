@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import './search_resume.css'
 import axiosInstance from "../public/axios/axios";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function Search(props) {
     const data = props.unitad;
@@ -16,6 +17,18 @@ export default function Search(props) {
     const [job, setJob] = useState('');
     const [religion, setReligion] = useState('');
     const [danhsach, setDanhsach] = useState([]);
+    const [che, setChe] = useState(true);
+    const [accept, setAccept] = useState(true)
+
+    useEffect(()=>{
+        axiosInstance.get(`/Nhaplieu/check?user=${data.user}`).then((res) => {
+          if(res.data === "no"){  
+            setAccept(false);
+        }
+        else setAccept(true);
+        
+      });
+      },[])
 
     useEffect(() => {
         axiosInstance.get(`/select?role=${data.role}&user=${data.user}`).then((res) => {
@@ -43,9 +56,31 @@ export default function Search(props) {
 
     useEffect(() => {
         axiosInstance.get(`/search?province=${province}&town=${town}&village=${village}&fullname=${fullname}&cccd=${cccd}&hometown=${hometown}&job=${job}&religion=${religion}&role=${data.role}&user=${data.user}`).then((res) => {
-                setDanhsach(res.data);
+            setDanhsach(res.data);
         })
-    }, [province, town, village, fullname, cccd, hometown, job, religion, data.role, data.user]);
+    }, [province, town, village, fullname, cccd, hometown, job, religion, data.role, data.user, che]);
+
+    //Xoa dong du lieu
+    const clickXoa = (deletecccd) => {
+        if (accept == true) {
+            const check = window.confirm("Bạn có muốn xóa bản ghi này?");
+            let ok;
+            if (check == true) {
+                axiosInstance.get(`/search/delete?cccd=${deletecccd}`).then((res) => {
+                    ok = res.data;
+                    if (ok == 'ok') {
+                        setChe(!che)
+                        window.alert('Đã xóa thành công người có CCCD ' + deletecccd)
+                    }
+                })
+            }
+            else {
+            }
+        }
+        else {
+            window.alert("Bạn không có quyền");
+        }
+    }
 
     return (
         <div className="se">
@@ -63,6 +98,7 @@ export default function Search(props) {
                         <th style={{ width: '7vw' }}>Xã/ Phường</th>
                         <th style={{ width: '7vw' }}>Quận/ Huyện</th>
                         <th style={{ width: '8vw' }}>Tỉnh/ Thành phố</th>
+                        <th>Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -153,6 +189,7 @@ export default function Search(props) {
                                 })}
                             </select>
                         </td>
+                        <td></td>
                     </tr>
                     {danhsach.map((val, key) => {
                         return (
@@ -167,6 +204,7 @@ export default function Search(props) {
                                 <td style={{ width: '7vw' }}>{val.village}</td>
                                 <td style={{ width: '7vw' }}>{val.town}</td>
                                 <td style={{ width: '8vw' }}>{val.province}</td>
+                                <td><button id="nutxoa" onClick={() => clickXoa(val.CCCD)}><DeleteIcon></DeleteIcon></button></td>
                             </tr>
                         )
                     })}

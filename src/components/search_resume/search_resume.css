@@ -41,10 +41,18 @@
     width: 6vw;
 }
 
+#nutxoa {
+    background: none;
+	color: inherit;
+	border: none;
+    cursor: pointer;
+}
+
+
 @media screen and (max-width: 800px) {
     .styled-table {
         border-collapse: collapse;
-        font-size: 11px;
+        font-size: 10px;
         font-family: sans-serif;
         box-shadow: 0 0 18px rgba(0, 0, 0, 0.15);
         margin: auto;
