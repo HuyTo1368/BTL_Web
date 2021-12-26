@@ -86,10 +86,10 @@ export default function AddMember() {
 
       <div className="containerr ">
         <div className="form-group row name">
-          <label htmlFor="staticName" className="col-sm-2 col-form-label">
+          <label htmlFor="staticName" className="col-sm-4 col-form-label">
             {levelUnit}
           </label>
-          <div className="col-sm-10">
+          <div className="col-sm-8">
             <input
               type="text"
               className="form-control"
@@ -101,10 +101,10 @@ export default function AddMember() {
           </div>
         </div>
         <div className="form-group row">
-          <label htmlFor="staticEmail" className="col-sm-2 col-form-label">
+          <label htmlFor="staticEmail" className="col-sm-4 col-form-label">
             Tài khoản
           </label>
-          <div className="col-sm-10">
+          <div className="col-sm-8">
             <input
               type="text"
               className="form-control"
@@ -117,10 +117,10 @@ export default function AddMember() {
         </div>
         <br></br>
         <div className="form-group row">
-          <label htmlFor="inputPassword" className="col-sm-2 col-form-label">
+          <label htmlFor="inputPassword" className="col-sm-4 col-form-label">
             Mật khẩu
           </label>
-          <div className="col-sm-10">
+          <div className="col-sm-8">
             <input
               type="password"
               className="form-control"
@@ -135,11 +135,11 @@ export default function AddMember() {
         <div className="form-group row">
           <label
             htmlFor="inputPasswordAgain"
-            className="col-sm-2 col-form-label"
+            className="col-sm-4 col-form-label"
           >
             Nhập lại
           </label>
-          <div className="col-sm-10">
+          <div className="col-sm-8">
             <input
               type="password"
               className="form-control"
@@ -155,7 +155,7 @@ export default function AddMember() {
           </div>
         </div>
         <br />
-        <br />
+
         <button class="btn btn-primary " onClick={sendAPI}>
           Xác nhận
         </button>

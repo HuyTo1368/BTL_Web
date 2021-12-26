@@ -46,6 +46,7 @@ export default function Login() {
             onChange={(e) =>
               setLogin_in({ ...login_in, user: `${e.target.value}` })
             }
+            autoComplete="on"
           />
         </div>
         <div className="lrow">
