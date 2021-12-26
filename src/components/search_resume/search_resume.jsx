@@ -37,6 +37,7 @@ export default function Search(props) {
     }, [data.role, data.user]);
 
     useEffect(() => {
+        setTown('all_province');
         axiosInstance.get(`/select/town?province=${province}&role=${data.role}&user=${data.user}`).then((res) => {
             setlistTown(res.data);
         })
@@ -52,6 +53,11 @@ export default function Search(props) {
         if (town === 'all_province') {
             setVillage('all_town')
         }
+
+        if(town == 'all_province') {
+            setVillage('all_town')
+        }
+        setVillage('all_town')
     }, [data.role, data.user, province, town]);
 
     useEffect(() => {
@@ -109,6 +115,7 @@ export default function Search(props) {
                                 style={{ width: '8vw' }}
                                 type="text"
                                 onBlur={e => setFullname(e.target.value)}
+
                             />
                         </td>
                         <td style={{ width: '7vw' }}>

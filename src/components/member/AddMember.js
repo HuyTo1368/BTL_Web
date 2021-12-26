@@ -31,7 +31,8 @@ export default function AddMember() {
     roleDown = "A3";
     levelUnit = "Huyện/Quận";
   } else if (role === "A3") {
-    roleDown = "Xã/Thị Trấn";
+    roleDown = "B1";
+    levelUnit = "Xã/Thị Trấn";
   } else if (role === "B1") {
     roleDown = "B2";
     levelUnit = "Thôn/Bản";

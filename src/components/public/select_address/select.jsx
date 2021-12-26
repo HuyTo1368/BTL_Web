@@ -24,12 +24,17 @@ export default function Select(props) {
     }, []);
 
     useEffect(() => {
+        setTown('all_province');
         axiosInstance.get(`/select/town?province=${province}&role=${data.role}&user=${data.user}`).then((res) => {
             setlistTown(res.data);
         })
     }, [province]);
    
     useEffect(() => {
+        if(town == 'all_province') {
+            setVillage('all_town')
+        }
+        setVillage('all_town')
         axiosInstance.get(`/select/village?province=${province}&town=${town}&role=${data.role}&user=${data.user}`).then((res) => {
             setlistVillage(res.data);
         })
