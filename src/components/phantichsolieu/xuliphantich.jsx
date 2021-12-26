@@ -11,6 +11,7 @@ import { Bar } from "react-chartjs-2";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { VictoryChart } from "victory";
+import Select from "../public/select_address/select";
 // var a = 100;
 // var c = 200;
 // var c_1 = Math.round((c*100)/(a+c))
@@ -30,6 +31,7 @@ import { VictoryChart } from "victory";
 
 
 export default function Xuliphantich(props) {
+    const data = props.id;
     const [listProvince, setlistProvince] = useState([]);
   const [listTown, setlistTown] = useState([]);
   const [listVillage, setlistVillage] = useState([]);
@@ -59,11 +61,19 @@ export default function Xuliphantich(props) {
     const[eachReligion4,setEachReligion4] = useState('')
     const[eachReligion5,setEachReligion5] = useState('')
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/select').then((res) => {
-        setlistProvince(res.data);
-    })
-}, []);
+    const callbackFunction = (Stinh, Shuyen, Sxa) => {
+        setProvince(Stinh);
+        setTown(Shuyen);
+        setVillage(Sxa); 
+    };
+
+
+
+//   useEffect(() => {
+//     axios.get('http://localhost:5000/select').then((res) => {
+//         setlistProvince(res.data);
+//     })
+// }, []);
 // giới tính nam
 useEffect(() => {
   axios.get(`http://localhost:5000/show2?dan1=${province}&dan11=${town}&dan111=${village}`).then((res) => {
@@ -130,17 +140,17 @@ useEffect(() => {
   })
   }, [province,town,village]);
 
-useEffect(() => {
-    axios.get(`http://localhost:5000/select/town?province=${province}`).then((res) => {
-        setlistTown(res.data);
-    })
-}, [province]);
+// useEffect(() => {
+//     axios.get(`http://localhost:5000/select/town?province=${province}`).then((res) => {
+//         setlistTown(res.data);
+//     })
+// }, [province]);
 
-useEffect(() => {
-    axios.get(`http://localhost:5000/select/village?province=${province}&town=${town}`).then((res) => {
-        setlistVillage(res.data);
-    })
-}, [province, town]);
+// useEffect(() => {
+//     axios.get(`http://localhost:5000/select/village?province=${province}&town=${town}`).then((res) => {
+//         setlistVillage(res.data);
+//     })
+// }, [province, town]);
 
 var a
 var c
@@ -193,7 +203,8 @@ var m5 = eachReligion5
     return (
         <div>
             <div>
-            <select
+            <Select parentCallback={callbackFunction} check={data}/>
+            {/* <select
                 name={1}
                 id="tinh"
                 className="luachon1"
@@ -238,7 +249,7 @@ var m5 = eachReligion5
                         </option>
                     )
                 })}
-            </select>
+            </select> */}
         </div>
             <div className="Chart_phan_tich" id="chu_thich1">
             <VictoryPie 

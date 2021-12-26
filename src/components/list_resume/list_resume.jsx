@@ -15,7 +15,7 @@ export default function ListResume(props) {
     const callbackFunction = (Stinh, Shuyen, Sxa) => {
         setTinh(Stinh);
         setHuyen(Shuyen);
-        setXa(Sxa);
+        setXa(Sxa); 
     };
 
     const showResume = () => {
