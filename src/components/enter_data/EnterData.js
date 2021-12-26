@@ -4,9 +4,16 @@ import { useNavigate } from 'react-router-dom';
 import "./EnterData.css";
 import axiosInstance from "../public/axios/axios";
 import Select from "../public/select_address/select";
-
+import { Theme } from "../../App";
 export default function EnterData() {
+
   const navigate = useNavigate()
+  const dataUser = useContext(Theme)
+  const roleA1 = {
+    role: 'A1',
+    user: 'admin'
+
+  }
   const [state, setState] = useState({
     CCCD: "",
     fullName: "",
@@ -26,16 +33,16 @@ export default function EnterData() {
     job: "",
     study: "",
   });
-  const callBackHomeTown = (...rest) => {
+  const callBackHomeTown = (province, town, village) => {
     setState({
       ...state,
-      hometown: { province: rest[0], town: rest[1], village: rest[2] },
+      hometown: { province: province, town: town, village: village },
     });
   };
-  const callBackAdress = (...rest) => {
+  const callBackAdress = (province, town, village) => {
     setState({
       ...state,
-      address: { province: rest[0], town: rest[1], village: rest[2] },
+      address: { province: province, town: town, village: village },
     });
   };
   console.log(state);
@@ -116,12 +123,12 @@ export default function EnterData() {
 
             <div className="inputBox center">
               <span className="details"> Quê quán</span>
-              <Select parentCallback={callBackHomeTown}></Select>
+              <Select parentCallback={callBackHomeTown} check = {roleA1}></Select>
             </div>
 
             <div className="inputBox center">
               <span className="details"> Địa chỉ thường trú</span>
-              <Select parentCallback={callBackAdress}></Select>
+              <Select parentCallback={callBackAdress} check = {roleA1}></Select>
             </div>
 
             <div className="inputBox center">

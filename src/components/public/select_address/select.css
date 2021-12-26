@@ -43,3 +43,11 @@
     display: block;
 }
  
+@media screen and (max-width: 800px) {
+    #khungchonchung {
+        font-size: 13px;
+    }
+    #huyen {
+        width: 13vw;
+    }
+}

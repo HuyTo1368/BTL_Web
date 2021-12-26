@@ -1,14 +1,14 @@
 .Chart_phan_tich {
     float: left;
-    margin: 10px 10px 10px 200px;
+    margin: 10px 60px 10px 135px;
     height: 50vh;
     width: 50vh;
 }
 .Chart_phan_tich_2 {
     float: left;
-    margin: 20px;
+    margin: 20px 20px 100px 135px;
     height: 50vh;
-    width: 50vh;
+    width: 60vh;
 }
 
 .chart-layout{
@@ -33,4 +33,13 @@
 
 .chart_dan_toc{
     margin : 20px;
+}
+
+@media screen and (max-width: 800px) {
+    .Chart_phan_tich {
+        margin: 10px 60px 80px 168px;
+    }
+    .Chart_phan_tich_2 {
+        margin: 10px 60px 100px 136px;
+    }
 }

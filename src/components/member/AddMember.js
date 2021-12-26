@@ -6,25 +6,47 @@ import { useState } from "react";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import "./AddMember.css";
 import axiosInstance from "../public/axios/axios";
-
+import { Theme } from "../../App";
+import { useContext } from "react";
+import sha256 from "crypto-js/sha256";
+import { useNavigate } from "react-router";
 export default function AddMember() {
+  const navigate = useNavigate()
   const [state, setState] = useState({
-    name: '',
+    name: "",
     user: "",
     password: "",
     passwordAgain: "",
-
   });
+  
+  const dataUser = useContext(Theme).dataUser;
+  
+  const role = dataUser.role;
+  var roleDown;
+  var levelUnit;
+  if (role === "A1") {
+    roleDown = "A2";
+    levelUnit = "Tỉnh/Thành Phố";
+  } else if (role === "A2") {
+    roleDown = "A3";
+    levelUnit = "Huyện/Quận";
+  } else if (role === "A3") {
+    roleDown = "Xã/Thị Trấn";
+  } else if (role === "B1") {
+    roleDown = "B2";
+    levelUnit = "Thôn/Bản";
+  }
   // console.log(state);
-  const [alertUp, setAlertUp] = useState(false)
+  const [alertUp, setAlertUp] = useState(false);
   const checkEmpty = () => {
+
     if (state.user && state.password && state.passwordAgain && state.name) {
       return true;
     }
     return false;
   };
   const checkPassWordAgain = () => {
-    if (state.password === state.passwordAgain) {
+    if (state.password == state.passwordAgain) {
       setAlertUp(false);
       return true;
     } else {
@@ -34,31 +56,35 @@ export default function AddMember() {
   };
   // const t = checkPassWordAgain()
   const sendAPI = () => {
+
     if (checkEmpty() && checkPassWordAgain()) {
-      const temp = state
-      delete temp.passwordAgain
-      axiosInstance.post("/member/add", temp).then((res) => {
-        if(res.data === 'Ok'){
-          console.log("dc");
+      const data = {
+        name: state.name,
+        user: state.user,
+        password: sha256(state.password).toString()
+      }
+      axiosInstance.post("/member/add", data).then((res) => {
+        if (res.data === "ok") {
+          navigate('/Trangchu/Success')
+        } else if (res.data === "no") {
+          console.log("no");
         }
       });
-    
-
     }
   };
 
   return (
     <div>
       <br />
-      <h1>Tạo tài khoản cho A1</h1>
       <br />
+      <h1>Tạo tài khoản cho {roleDown}</h1>
       <br />
       <br />
 
-      <div className="containerr">
-      <div className="form-group row">
+      <div className="containerr ">
+        <div className="form-group row name">
           <label htmlFor="staticName" className="col-sm-2 col-form-label">
-            Tên Tỉnh
+            {levelUnit}
           </label>
           <div className="col-sm-10">
             <input
@@ -98,7 +124,7 @@ export default function AddMember() {
               required
               id="inputPassword"
               placeholder="Password"
-              onChange={(e) => setState({ ...state, password: e.target.value })}
+              onChange={(e) => setState({ ...state, password: (e.target.value)})}
             />
           </div>
         </div>
@@ -118,7 +144,7 @@ export default function AddMember() {
               id="inputPasswordAgain"
               placeholder="Enter Password again"
               onChange={(e) =>
-                setState({ ...state, passwordAgain: e.target.value })
+                setState({ ...state, passwordAgain: (e.target.value) })
               }
             />
             {alertUp && <p className="alert">*Mật khẩu không khớp</p>}
@@ -126,7 +152,7 @@ export default function AddMember() {
         </div>
         <br />
         <br />
-        <button  class="btn btn-primary " onClick={sendAPI}>
+        <button class="btn btn-primary " onClick={sendAPI}>
           Xác nhận
         </button>
       </div>
