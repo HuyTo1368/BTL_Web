@@ -51,7 +51,7 @@ export default function PhanTich(props) {
                 setFemale(0)
             }
         })
-    }, [province, town, village]);
+    }, [province, town, village, data.role]);
 
 
     // trên 18 tuổi
@@ -66,12 +66,12 @@ export default function PhanTich(props) {
                 setOlder(0)
             }
         })
-    }, [province, town, village]);
+    }, [province, town, village, data.role]);
 
     //thống kê dân tộc
     useEffect(() => {
         axiosInstance.get(`/phantich/dantoc?province=${province}&town=${town}&village=${village}&role=${data.role}`).then((res) => {
-            if (res.data.length == 0) {
+            if (res.data.length === 0) {
                 setReligion('No data')
                 setReligion2('No data')
                 setReligion3('No data')
@@ -102,7 +102,7 @@ export default function PhanTich(props) {
 
     var percent_male
     var percent_female
-    if (male == 0) {
+    if (male === 0) {
         percent_male = 0
         percent_female = 100
     } else {
@@ -115,7 +115,7 @@ export default function PhanTich(props) {
 
     var percent_teenager
     var percent_older
-    if (older == 0) {
+    if (older === 0) {
         percent_teenager = 0
         percent_older = 100
     }

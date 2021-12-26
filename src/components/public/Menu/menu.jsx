@@ -1,7 +1,6 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./menu.css";
-import clsx from "clsx";
 import { useLocation } from "react-router";
 export default function Menu(props) {
   const location = useLocation().pathname;

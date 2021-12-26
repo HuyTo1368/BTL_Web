@@ -1,6 +1,5 @@
-import { useContext, useState, useRef, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-
 import "./EnterData.css";
 import axiosInstance from "../public/axios/axios";
 import Select from "../public/select_address/select";
@@ -78,14 +77,12 @@ export default function EnterData() {
   
 
   const sendAPI = () => {
-    // if (checkEmpty()) {
-      
+    if (checkEmpty()) {
       axiosInstance.post("/Nhaplieu", state).then((res) => {
         if(res.data === "Ok"){
-          
           navigate('/Trangchu/Success');
       }});
-    // }
+    }
   };
 
   return (
