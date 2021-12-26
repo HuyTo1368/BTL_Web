@@ -1,19 +1,34 @@
-import { useContext, useState, useRef } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
 import "./EnterData.css";
 import axiosInstance from "../public/axios/axios";
 import Select from "../public/select_address/select";
 import { Theme } from "../../App";
+import AccessDenied from "./AccessDenied";
+
+
 export default function EnterData() {
 
   const navigate = useNavigate()
-  const dataUser = useContext(Theme)
+  const data = useContext(Theme).dataUser;
   const roleA1 = {
     role: 'A1',
     user: 'admin'
 
   }
+  console.log(data.user);
+  const [accept, setAccept] = useState(true)
+  useEffect(()=>{
+    axiosInstance.get(`/Nhaplieu/check?user=${data.user}`).then((res) => {
+      if(res.data === "no"){
+        
+        setAccept(false);
+    }
+    else setAccept(true);
+    
+  });
+  },[data])
   const [state, setState] = useState({
     CCCD: "",
     fullName: "",
@@ -31,7 +46,6 @@ export default function EnterData() {
     },
     region: "",
     job: "",
-    study: "",
   });
   const callBackHomeTown = (province, town, village) => {
     setState({
@@ -45,7 +59,6 @@ export default function EnterData() {
       address: { province: province, town: town, village: village },
     });
   };
-  console.log(state);
   const checkEmpty = () => {
     if (
       state.CCCD &&
@@ -55,8 +68,7 @@ export default function EnterData() {
       state.hometown &&
       state.address &&
       state.region &&
-      state.job &&
-      state.study
+      state.job 
     ) {
       return true;
     }
@@ -77,7 +89,8 @@ export default function EnterData() {
   };
 
   return (
-    <div>
+    <>
+    {!accept?<AccessDenied/>:<div>
       <div className="container-declaration">
         <div className="title"> Nhập liệu về dân số</div>
         <div className="form-declaration">
@@ -131,16 +144,6 @@ export default function EnterData() {
               <Select parentCallback={callBackAdress} check = {roleA1}></Select>
             </div>
 
-            <div className="inputBox center">
-              <span className="details">Trình độ học vấn</span>
-              <input
-                name="academicLevel"
-                type="text"
-                required
-                className="center"
-                onChange={(e) => setState({ ...state, study: e.target.value })}
-              />
-            </div>
 
             <div className="inputBox center">
               <span className="details">Nghề nghiệp</span>
@@ -199,6 +202,9 @@ export default function EnterData() {
           </div>
         </div>
       </div>
-    </div>
+    </div>}
+    </>
+    
+    
   );
 }

@@ -35,8 +35,8 @@ function App() {
         .catch((err) => {
           throw err;
         });
-  });
-
+  },[]);
+  console.log('App:');
   return (
     <div className="App">
      
