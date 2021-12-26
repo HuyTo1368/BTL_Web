@@ -14,6 +14,7 @@ import Provider from "./components/public/storage/Provider";
 import { createContext } from "react";
 import axiosInstance from "./components/public/axios/axios.js";
 import "./App.css";
+import Welcom from "./components/tranghai/Welcom.js";
 
 export const Theme = createContext();
 
@@ -53,6 +54,7 @@ function App() {
               path="/Trangchu"
               element={<Tranghai id={dataUser.user} value={dataUser} />}
             >
+              <Route path="" element={<Welcom/>} />
               <Route path="Tiendo" element={<Tiendo id={dataUser} />} />
               <Route path="Member" element={<Member />} />
 
