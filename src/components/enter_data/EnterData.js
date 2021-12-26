@@ -154,7 +154,7 @@ export default function EnterData() {
             </div>
 
             <div className="inputBox center">
-              <span className="details">Tôn giáo</span>
+              <span className="details">Dân tộc</span>
               <input
                 name="religion"
                 type="text"
@@ -196,6 +196,10 @@ export default function EnterData() {
 
           <div className="button">
             <input type="submit" value="Nhập" onClick={sendAPI} />
+          </div>
+
+          <div id='taiphieu'>
+            <a href="https://cdn.luatvietnam.vn/uploaded/Others/2021/10/01/don-xin-xac-nhan-thong-tin_0110111059.doc" className="phieudieutra">Tải phiếu điều tra</a>
           </div>
         </div>
       </div>

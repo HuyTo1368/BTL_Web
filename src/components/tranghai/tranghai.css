@@ -7,7 +7,6 @@
 }
 
 .khunglamviec {
-    padding-bottom: 1vh;
     margin-left: 10px;
     border: 5px solid rgb(35, 115, 219);
     width: 85vw;
@@ -16,9 +15,8 @@
     background-image: url(https://baoxaydung.com.vn/stores/news_dataimages/vananh/032021/30/10/in_article/3213_image001.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
-    background: rgba(255, 255, 255, 0.65); 
+    background: rgba(255, 255, 255, 0.2); 
     backdrop-filter: blur(8px); 
-    /* background-color: rgb(9, 95, 165); */
     
 }
 .blur {
