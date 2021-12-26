@@ -55,19 +55,21 @@ export default function AddMember() {
     }
   };
   // const t = checkPassWordAgain()
+  const [error, setError] = useState(false)
   const sendAPI = () => {
 
     if (checkEmpty() && checkPassWordAgain()) {
       const data = {
         name: state.name,
         user: state.user,
-        password: sha256(state.password).toString()
+        password: sha256(state.password).toString(),
+        role: roleDown
       }
       axiosInstance.post("/member/add", data).then((res) => {
         if (res.data === "ok") {
           navigate('/Trangchu/Success')
         } else if (res.data === "no") {
-          console.log("no");
+          setError(true)
         }
       });
     }
@@ -147,7 +149,8 @@ export default function AddMember() {
                 setState({ ...state, passwordAgain: (e.target.value) })
               }
             />
-            {alertUp && <p className="alert">*Mật khẩu không khớp</p>}
+            <span className="alertt"  >{alertUp?'*Mật khẩu không khớp':' '}</span>
+            <span className="alertt" >{error?'*tài khoản đã tồn tại':' '}</span>
           </div>
         </div>
         <br />

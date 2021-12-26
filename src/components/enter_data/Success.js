@@ -8,12 +8,12 @@ export default function Success() {
       Nhập thông tin thành công
 
     </div>
-    <div>
+    {/* <div>
         <Link to = '../Nhaplieu'>
         <button type="button" class="btn btn-primary">Tiếp tục</button>
         </Link>
         
-    </div>
+    </div> */}
     </>
   );
 }

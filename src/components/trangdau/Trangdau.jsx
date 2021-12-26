@@ -22,10 +22,8 @@ export default function Login() {
         body: login_in,
       })
       .then((res) => {
-        console.log("gagagag");
         context.setDataUser(res.data);
         setError("");
-        console.log("loi roi");
         navigate("/Trangchu");
       })
       .catch(function (error) {
