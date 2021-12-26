@@ -28,7 +28,7 @@ export default function Search(props) {
         else setAccept(true);
         
       });
-      },[])
+      },[data])
 
     useEffect(() => {
         axiosInstance.get(`/select?role=${data.role}&user=${data.user}`).then((res) => {

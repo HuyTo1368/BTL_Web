@@ -8,7 +8,7 @@ import AccessDenied from "./AccessDenied";
 
 
 export default function EnterData() {
-
+  const [error, setError] = useState(false)
   const navigate = useNavigate()
   const data = useContext(Theme).dataUser;
   const roleA1 = {
@@ -69,8 +69,10 @@ export default function EnterData() {
       state.region &&
       state.job 
     ) {
+      setError(false)
       return true;
     }
+    setError(true)
     return false;
   };
   // const history = useHistory()
@@ -193,7 +195,7 @@ export default function EnterData() {
               </label>
             </div>
           </div>
-
+                <span style={{fontSize:'20px'}}>{error&&'*Chưa nhập đủ dữ liệu'}</span>
           <div className="button">
             <input type="submit" value="Nhập" onClick={sendAPI} />
           </div>
