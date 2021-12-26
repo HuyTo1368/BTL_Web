@@ -39,9 +39,7 @@ function App() {
 
   return (
     <div className="App">
-      <div>
-        <img src="https://vi.wikipedia.org/wiki/Tr%C6%B0%E1%BB%9Dng_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_C%C3%B4ng_ngh%E1%BB%87,_%C4%90%E1%BA%A1i_h%E1%BB%8Dc_Qu%E1%BB%91c_gia_H%C3%A0_N%E1%BB%99i#/media/T%E1%BA%ADp_tin:Logo_HUET.svg"></img>
-      </div>
+     
       <>
         <Theme.Provider value={obData}>
           <Routes>

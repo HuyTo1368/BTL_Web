@@ -32,7 +32,8 @@ export default function Tranghai(props) {
       <div className="display">
         <Menu value = {props.value}/>
         <div className="khunglamviec">
-          <Outlet></Outlet>
+          <div className="blur"> <Outlet></Outlet></div>
+         
         </div>
       </div>
 
